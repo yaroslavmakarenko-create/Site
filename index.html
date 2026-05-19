@@ -13,10 +13,10 @@
       --black: #080808;
       --dark: #111111;
       --card: #161616;
-      --border: rgba(201,168,76,0.18);
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --gold-dim: rgba(201,168,76,0.08);
+      --border: rgba(184,151,106,0.18);
+      --gold: #B8976A;
+      --gold-light: #D4B896;
+      --gold-dim: rgba(184,151,106,0.08);
       --white: #f0ece4;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Inter', sans-serif;
@@ -61,7 +61,7 @@
     }
     .pre-bar {
       width: min(240px, 60vw); height: 1px;
-      background: rgba(201,168,76,.2); overflow: hidden;
+      background: rgba(184,151,106,.2); overflow: hidden;
     }
     .pre-fill {
       height: 100%; width: 0%; background: var(--gold);
@@ -121,8 +121,8 @@
       position: absolute;
       right: 8%; top: 50%; transform: translateY(-50%) rotate(45deg);
       width: min(40vw, 480px); height: min(40vw, 480px);
-      border: 1px solid rgba(201,168,76,.12);
-      box-shadow: inset 0 0 80px rgba(201,168,76,.04), 0 0 120px rgba(201,168,76,.04);
+      border: 1px solid rgba(184,151,106,.12);
+      box-shadow: inset 0 0 80px rgba(184,151,106,.04), 0 0 120px rgba(184,151,106,.04);
     }
     .hero-bg::after {
       content: '';
@@ -130,7 +130,7 @@
       right: calc(8% + min(4vw, 48px)); top: 50%;
       transform: translateY(-50%) rotate(45deg);
       width: min(32vw, 384px); height: min(32vw, 384px);
-      border: 1px solid rgba(201,168,76,.07);
+      border: 1px solid rgba(184,151,106,.07);
     }
     #hero-canvas {
       position: absolute; inset: 0; z-index: 0; pointer-events: none;
@@ -140,8 +140,8 @@
       right: calc(8% + min(8vw, 96px) + min(4vw, 24px));
       top: 50%; transform: translateY(-50%) rotate(45deg);
       width: min(20vw, 240px); height: min(20vw, 240px);
-      background: radial-gradient(ellipse at 35% 35%, rgba(201,168,76,.18) 0%, rgba(201,168,76,.03) 60%, transparent 100%);
-      border: 1px solid rgba(201,168,76,.2);
+      background: radial-gradient(ellipse at 35% 35%, rgba(184,151,106,.18) 0%, rgba(184,151,106,.03) 60%, transparent 100%);
+      border: 1px solid rgba(184,151,106,.2);
     }
     .hero-content { position: relative; z-index: 1; max-width: 680px; }
     .eyebrow { font-size: .68rem; letter-spacing: .45em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
@@ -194,7 +194,7 @@
     .founder-mono {
       position: absolute; top: -1rem; right: -1.5rem;
       font-family: var(--serif); font-size: 5rem; font-weight: 300;
-      color: rgba(201,168,76,.06); letter-spacing: .3em;
+      color: rgba(184,151,106,.06); letter-spacing: .3em;
       pointer-events: none; white-space: nowrap; will-change: transform;
     }
     .founder-role { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: .75rem; position: relative; }
@@ -216,7 +216,7 @@
     .collections-track:active { cursor: grabbing; }
     .collections-progress {
       max-width: 1200px; margin: 1.5rem auto 0;
-      height: 1px; background: rgba(201,168,76,.15);
+      height: 1px; background: rgba(184,151,106,.15);
     }
     .collections-progress-fill { height: 100%; background: var(--gold); width: 25%; transition: width .15s ease; }
     .c-card {
@@ -226,7 +226,7 @@
       border: 1px solid var(--border);
       transition: border-color .4s;
     }
-    .c-card:hover { border-color: rgba(201,168,76,.4); }
+    .c-card:hover { border-color: rgba(184,151,106,.4); }
     .c-card-bg {
       position: absolute; inset: 0;
       transition: transform .6s ease;
@@ -254,12 +254,12 @@
     .c-gem {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%) rotate(45deg);
       width: 120px; height: 120px;
-      border: 1px solid rgba(201,168,76,.15);
+      border: 1px solid rgba(184,151,106,.15);
       opacity: 0; transition: opacity .4s; z-index: 1;
     }
     .c-gem::before {
       content: ''; position: absolute; inset: 16px;
-      border: 1px solid rgba(201,168,76,.1);
+      border: 1px solid rgba(184,151,106,.1);
     }
     .c-card:hover .c-gem { opacity: 1; }
     .c-card-info {
@@ -291,7 +291,7 @@
     .process-steps { max-width: 1100px; margin: 3rem auto 0; display: grid; grid-template-columns: repeat(4,1fr); }
     .step { padding: 2.5rem 2rem; border-right: 1px solid var(--border); }
     .step:last-child { border-right: none; }
-    .step-n { font-family: var(--serif); font-size: 3.5rem; font-weight: 300; color: rgba(201,168,76,.12); line-height: 1; margin-bottom: 1rem; }
+    .step-n { font-family: var(--serif); font-size: 3.5rem; font-weight: 300; color: rgba(184,151,106,.12); line-height: 1; margin-bottom: 1rem; }
     .step-t { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin-bottom: .6rem; }
     .step-d { font-size: .8rem; opacity: .5; line-height: 1.75; }
 
@@ -299,7 +299,7 @@
     .quote-section { text-align: center; padding: 8rem 2.5rem; position: relative; overflow: hidden; }
     .quote-section::before {
       content: '\201C'; position: absolute; top: -3rem; left: 50%; transform: translateX(-50%);
-      font-family: var(--serif); font-size: 22rem; color: rgba(201,168,76,.04); line-height: 1; pointer-events: none;
+      font-family: var(--serif); font-size: 22rem; color: rgba(184,151,106,.04); line-height: 1; pointer-events: none;
     }
     .quote-text { font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.6rem); font-weight: 300; font-style: italic; max-width: 720px; margin: 0 auto 1.5rem; line-height: 1.4; position: relative; }
     .quote-by { font-size: .68rem; letter-spacing: .35em; text-transform: uppercase; color: var(--gold); opacity: .65; }
@@ -310,7 +310,7 @@
     .cta-mono {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       font-family: var(--serif); font-size: clamp(4rem, 12vw, 9rem); font-weight: 300;
-      color: rgba(201,168,76,.04); letter-spacing: .4em;
+      color: rgba(184,151,106,.04); letter-spacing: .4em;
       pointer-events: none; white-space: nowrap; will-change: transform;
     }
     .cta-inner p { opacity: .58; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.85; font-size: .95rem; position: relative; }
@@ -357,7 +357,86 @@
       .hero-bg::before, .hero-bg::after, .hero-gem { display: none; }
       .cursor-dot { display: none; }
       .cta-mono { display: none; }
+      #back-top { display: none; }
     }
+
+    /* ── NAV SCROLL EFFECT ── */
+    nav { transition: background .4s ease, border-bottom .4s ease; }
+    nav.scrolled {
+      background: rgba(8,8,8,.97);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(184,151,106,.1);
+    }
+
+    /* ── NAV LINK UNDERLINE ── */
+    .nav-links a:not(.btn) { position: relative; }
+    .nav-links a:not(.btn)::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width .35s ease;
+    }
+    .nav-links a:not(.btn):hover::after { width: 100%; }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 8000;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0); opacity: 0; pointer-events: none;
+      transition: opacity .4s, background .4s;
+    }
+    #lightbox.open { opacity: 1; pointer-events: all; background: rgba(0,0,0,.92); }
+    #lightbox-img {
+      max-width: 90vw; max-height: 82vh; object-fit: contain;
+      transform: scale(.88); transition: transform .45s cubic-bezier(.16,1,.3,1);
+      border: 1px solid rgba(184,151,106,.15);
+    }
+    #lightbox.open #lightbox-img { transform: scale(1); }
+    #lightbox-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      font-size: 1.8rem; color: var(--white); opacity: .4;
+      cursor: pointer; background: none; border: none;
+      font-family: var(--sans); line-height: 1; transition: opacity .2s;
+    }
+    #lightbox-close:hover { opacity: 1; }
+    #lightbox-caption {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      font-family: var(--serif); font-size: 1rem; color: var(--gold);
+      letter-spacing: .25em; text-transform: uppercase;
+      opacity: 0; transition: opacity .4s .2s; white-space: nowrap;
+    }
+    #lightbox.open #lightbox-caption { opacity: .65; }
+
+    /* ── FLOATING TELEGRAM BUTTON ── */
+    #float-tg {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 500;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: var(--gold); display: flex; align-items: center; justify-content: center;
+      text-decoration: none; opacity: 0; transform: scale(.8) translateY(10px);
+      transition: opacity .4s, transform .4s, background .3s, box-shadow .3s;
+      box-shadow: 0 4px 20px rgba(184,151,106,.25);
+    }
+    #float-tg.show { opacity: 1; transform: scale(1) translateY(0); }
+    #float-tg:hover {
+      background: var(--gold-light);
+      box-shadow: 0 6px 28px rgba(184,151,106,.4);
+      transform: scale(1.08) translateY(-2px);
+    }
+    #float-tg svg { width: 24px; height: 24px; fill: var(--black); }
+
+    /* ── BACK TO TOP ── */
+    #back-top {
+      position: fixed; bottom: 2rem; right: 6.2rem; z-index: 500;
+      width: 42px; height: 42px;
+      border: 1px solid rgba(184,151,106,.45);
+      background: rgba(8,8,8,.85); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; transform: translateY(10px);
+      transition: opacity .4s, transform .4s, background .3s, border-color .3s;
+      backdrop-filter: blur(10px);
+    }
+    #back-top.show { opacity: 1; transform: translateY(0); }
+    #back-top:hover { background: var(--gold); border-color: var(--gold); }
+    #back-top:hover .bta { stroke: var(--black); }
+    .bta { stroke: var(--gold); stroke-width: 1.5; fill: none; transition: stroke .3s; }
   </style>
 </head>
 <body>
@@ -663,6 +742,27 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button id="lightbox-close" aria-label="Закрити">✕</button>
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-caption"></div>
+</div>
+
+<!-- FLOAT TELEGRAM -->
+<a id="float-tg" href="https://t.me/SkarlatAlex" target="_blank" rel="noopener" aria-label="Написати в Telegram">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+  </svg>
+</a>
+
+<!-- BACK TO TOP -->
+<button id="back-top" aria-label="Прокрутити вгору">
+  <svg viewBox="0 0 24 24" width="18" height="18">
+    <polyline points="18 15 12 9 6 15" class="bta"/>
+  </svg>
+</button>
+
 <script>
 /* ═══════════════════════════════════════
    1. PRELOADER
@@ -838,7 +938,7 @@ document.querySelectorAll('.btn').forEach(btn => {
       const alpha = (Math.sin(t * p.speed * 60 + p.phase) + 1) / 2 * 0.55 + .05;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201,168,76,${alpha.toFixed(2)})`;
+      ctx.fillStyle = `rgba(184,151,106,${alpha.toFixed(2)})`;
       ctx.fill();
     });
     requestAnimationFrame(draw);
@@ -928,6 +1028,102 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); smoothScrollTo(target); }
   });
 });
+
+/* ═══════════════════════════════════════
+   12. 3D CARD TILT
+═══════════════════════════════════════ */
+document.querySelectorAll('.c-card').forEach(card => {
+  card.style.cursor = 'zoom-in';
+  card.addEventListener('mousemove', e => {
+    if (isMobile()) return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    card.style.transform  = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg)`;
+    card.style.transition = 'transform .08s ease, border-color .4s';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform  = '';
+    card.style.transition = 'transform .55s cubic-bezier(.16,1,.3,1), border-color .4s';
+  });
+});
+
+/* ═══════════════════════════════════════
+   13. LIGHTBOX
+═══════════════════════════════════════ */
+(function initLightbox() {
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lightbox-img');
+  const lbCap   = document.getElementById('lightbox-caption');
+  const lbClose = document.getElementById('lightbox-close');
+  if (!lb) return;
+
+  function openLB(src, caption) {
+    lbImg.src = src;
+    lbCap.textContent = caption || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLB() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { lbImg.src = ''; }, 450);
+  }
+
+  document.querySelectorAll('.c-card').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a') || e.target.closest('.c-card-info')) return;
+      const bg    = card.querySelector('.c-card-bg');
+      if (!bg) return;
+      const match = getComputedStyle(bg).backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
+      const name  = card.querySelector('.c-name')?.textContent || '';
+      if (match) openLB(match[1], name);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLB);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lb.classList.contains('open')) closeLB();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   14. FLOAT BUTTON + BACK TO TOP
+═══════════════════════════════════════ */
+(function initFloats() {
+  const floatTg = document.getElementById('float-tg');
+  const backTop = document.getElementById('back-top');
+  if (!floatTg || !backTop) return;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    floatTg.classList.toggle('show', y > 300);
+    backTop.classList.toggle('show', y > 600);
+  }, { passive: true });
+
+  backTop.addEventListener('click', () => {
+    const start = window.scrollY;
+    const t0 = performance.now();
+    const dur = 750;
+    function ease(t) { return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
+    (function frame(now) {
+      const t = Math.min((now - t0) / dur, 1);
+      window.scrollTo(0, start * (1 - ease(t)));
+      if (t < 1) requestAnimationFrame(frame);
+    })(performance.now());
+  });
+})();
+
+/* ═══════════════════════════════════════
+   15. NAV SCROLL EFFECT
+═══════════════════════════════════════ */
+(function initNavScroll() {
+  const navEl = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
