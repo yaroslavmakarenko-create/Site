@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Цей файл надає інструкції Claude Code (claude.ai/code) для роботи з кодом у цьому репозиторії.
 
 ## Проєкт
 
@@ -27,7 +27,7 @@ CSS вбудований у `<style>` в `<head>`. Дизайн-токени о�
 }
 ```
 
-Адаптивність: breakpoints `@media (max-width: 900px)` та `@media (max-width: 600px)`.
+Адаптивність: брейкпоінти `@media (max-width: 900px)` та `@media (max-width: 600px)`.
 
 ## JS-архітектура
 
@@ -39,11 +39,11 @@ CSS вбудований у `<style>` в `<head>`. Дизайн-токени о�
 4. **FADE-UP INTERSECTION OBSERVER** — клас `.in` на елементах `.fade-up` при вході у viewport
 5. **DIGIT COUNTERS** — плавна анімація числових статистик (easeOut)
 6. **PARALLAX** — `requestAnimationFrame`-паралакс для `.hero-gem`, `.founder-mono`, `#ctaMono`
-7. **MAGNETIC BUTTONS** — кнопки `.btn` притягуються до курсору (тільки desktop)
+7. **MAGNETIC BUTTONS** — кнопки `.btn` притягуються до курсору (лише на десктопі)
 8. **PARTICLE SYSTEM** — `<canvas id="hero-canvas">`: 60 золотих частинок, відштовхуються від миші
-9. **LIQUID CURSOR TRAIL** — DOM-елементи `.cursor-dot` за курсором (тільки desktop, `width > 768px`)
+9. **LIQUID CURSOR TRAIL** — DOM-елементи `.cursor-dot` за курсором (лише десктоп, `width > 768px`)
 10. **HORIZONTAL SCROLL (COLLECTIONS)** — drag/touch/wheel горизонтальний скрол + індикатор прогресу
-11. **SMOOTH SCROLL** — плавна прокрутка для `href^="#"` посилань (тривалість 900 мс, `easeInOutCubic`)
+11. **SMOOTH SCROLL** — плавна прокрутка для посилань `href^="#"` (тривалість 900 мс, `easeInOutCubic`)
 
 ## Контакти у коді
 
