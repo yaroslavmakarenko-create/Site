@@ -21,10 +21,65 @@
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Inter', sans-serif;
     }
-    html { scroll-behavior: smooth; }
+    html { }
     body { background: var(--black); color: var(--white); font-family: var(--sans); font-weight: 300; line-height: 1.6; overflow-x: hidden; }
 
-    /* NAV */
+    /* ── SCROLL PROGRESS ── */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: var(--gold); z-index: 10000; width: 0%;
+      pointer-events: none; transition: width .05s linear;
+    }
+
+    /* ── PRELOADER ── */
+    #preloader {
+      position: fixed; inset: 0; background: #0a0a0a;
+      z-index: 9999; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    #preloader.done { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+    .pre-logo {
+      font-family: var(--serif); font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 300; letter-spacing: .5em; color: var(--gold);
+      display: flex;
+    }
+    .pre-logo span {
+      display: inline-block;
+      opacity: 0; transform: translateY(20px);
+      animation: letterFade .5s ease forwards;
+    }
+    .pre-logo span:nth-child(1) { animation-delay: .0s; }
+    .pre-logo span:nth-child(2) { animation-delay: .08s; }
+    .pre-logo span:nth-child(3) { animation-delay: .16s; }
+    .pre-logo span:nth-child(4) { animation-delay: .24s; }
+    .pre-logo span:nth-child(5) { animation-delay: .32s; }
+    .pre-logo span:nth-child(6) { animation-delay: .40s; }
+    .pre-logo span:nth-child(7) { animation-delay: .48s; }
+    @keyframes letterFade {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pre-bar {
+      width: min(240px, 60vw); height: 1px;
+      background: rgba(201,168,76,.2); overflow: hidden;
+    }
+    .pre-fill {
+      height: 100%; width: 0%; background: var(--gold);
+      transition: width 2s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── CURSOR TRAIL ── */
+    .cursor-dot {
+      position: fixed; width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: .4;
+      transition: transform .6s ease, opacity .6s ease;
+    }
+    .cursor-dot.fade { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
       padding: 1.4rem 2.5rem;
@@ -41,12 +96,13 @@
       padding: .75rem 2rem;
       border: 1px solid var(--gold); color: var(--gold);
       text-decoration: none; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
-      transition: all .3s; background: transparent; cursor: pointer;
+      transition: background .3s, color .3s; background: transparent; cursor: pointer;
+      position: relative;
     }
     .btn:hover { background: var(--gold); color: var(--black); }
     .btn-lg { padding: 1rem 2.8rem; font-size: .8rem; }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       min-height: 100vh; display: flex; flex-direction: column;
       justify-content: flex-end; padding: 0 2.5rem 7rem;
@@ -60,7 +116,6 @@
       background-size: cover;
       background-position: center right;
     }
-    /* decorative diamond shape */
     .hero-bg::before {
       content: '';
       position: absolute;
@@ -77,6 +132,9 @@
       width: min(32vw, 384px); height: min(32vw, 384px);
       border: 1px solid rgba(201,168,76,.07);
     }
+    #hero-canvas {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    }
     .hero-gem {
       position: absolute;
       right: calc(8% + min(8vw, 96px) + min(4vw, 24px));
@@ -92,9 +150,13 @@
       font-weight: 300; line-height: 1.03; margin-bottom: 1.5rem;
     }
     .hero-title em { font-style: italic; color: var(--gold-light); }
-    .hero-sub { font-size: 1rem; max-width: 440px; opacity: .72; margin-bottom: 2.5rem; line-height: 1.75; }
+    .word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+    .word-inner { display: block; transform: translateY(110%); transition: transform .75s cubic-bezier(.16,1,.3,1); }
+    .word-inner.up { transform: translateY(0); }
+    .hero-sub { font-size: 1rem; max-width: 440px; opacity: 0; margin-bottom: 2.5rem; line-height: 1.75; transition: opacity .8s ease; }
+    .hero-sub.up { opacity: .72; }
 
-    /* MARQUEE */
+    /* ── MARQUEE ── */
     .marquee-wrap {
       background: var(--dark);
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -104,12 +166,12 @@
     .marquee-item { font-family: var(--serif); font-size: .85rem; letter-spacing: .2em; color: var(--gold); padding: 0 1.5rem; flex-shrink: 0; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* SECTIONS */
+    /* ── SECTIONS ── */
     .section { padding: 7rem 2.5rem; }
     .section-label { font-size: .65rem; letter-spacing: .45em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
     .section-title { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; }
 
-    /* PHILOSOPHY */
+    /* ── PHILOSOPHY ── */
     .philosophy { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
     .philosophy-text p { opacity: .65; margin-bottom: 1rem; line-height: 1.85; font-size: .95rem; }
     .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border); }
@@ -117,32 +179,47 @@
     .stat-l { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; opacity: .45; margin-top: .25rem; }
     .founder-card {
       border: 1px solid var(--border);
-      overflow: hidden;
-      position: relative;
+      overflow: hidden; position: relative;
       background: var(--card);
     }
     .founder-photo {
       width: 100%; height: 280px;
       object-fit: cover; object-position: center top;
-      display: block;
-      filter: brightness(.9) contrast(1.05);
+      display: block; filter: brightness(.9) contrast(1.05);
     }
-    .founder-info { padding: 2rem 2.5rem; }
-    .founder-role { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: .75rem; }
-    .founder-name { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; margin-bottom: 1.5rem; }
-    .founder-quote { font-family: var(--serif); font-size: 1.05rem; font-style: italic; opacity: .6; line-height: 1.7; margin-bottom: 2rem; }
-    .founder-contacts { display: flex; flex-direction: column; gap: .5rem; }
+    .founder-info { padding: 2rem 2.5rem; position: relative; overflow: hidden; }
+    .founder-mono {
+      position: absolute; top: -1rem; right: -1.5rem;
+      font-family: var(--serif); font-size: 5rem; font-weight: 300;
+      color: rgba(201,168,76,.06); letter-spacing: .3em;
+      pointer-events: none; white-space: nowrap; will-change: transform;
+    }
+    .founder-role { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: .75rem; position: relative; }
+    .founder-name { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; margin-bottom: 1.5rem; position: relative; }
+    .founder-quote { font-family: var(--serif); font-size: 1.05rem; font-style: italic; opacity: .6; line-height: 1.7; margin-bottom: 2rem; position: relative; }
+    .founder-contacts { display: flex; flex-direction: column; gap: .5rem; position: relative; }
     .founder-contacts a { color: var(--white); text-decoration: none; font-size: .82rem; opacity: .5; transition: opacity .3s; display: flex; align-items: center; gap: .5rem; }
     .founder-contacts a:hover { opacity: 1; }
     .founder-contacts a::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--gold); opacity: .5; }
 
-    /* COLLECTIONS */
+    /* ── COLLECTIONS ── */
     .collections-bg { background: var(--dark); }
     .collections-header { max-width: 1200px; margin: 0 auto 3rem; display: flex; justify-content: space-between; align-items: flex-end; }
-    .collections-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .collections-track {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; gap: 2px; overflow: hidden;
+      cursor: grab; user-select: none;
+    }
+    .collections-track:active { cursor: grabbing; }
+    .collections-progress {
+      max-width: 1200px; margin: 1.5rem auto 0;
+      height: 1px; background: rgba(201,168,76,.15);
+    }
+    .collections-progress-fill { height: 100%; background: var(--gold); width: 25%; transition: width .15s ease; }
     .c-card {
       position: relative; overflow: hidden;
-      min-height: 400px; display: flex; flex-direction: column; justify-content: flex-end;
+      min-height: 400px; width: 380px; flex-shrink: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
       border: 1px solid var(--border);
       transition: border-color .4s;
     }
@@ -151,17 +228,31 @@
       position: absolute; inset: 0;
       transition: transform .6s ease;
     }
-    .c-card:hover .c-card-bg { transform: scale(1.03); }
+    .c-card:hover .c-card-bg { transform: scale(1.08); }
     .c-card-bg.sun  { background-image: url('img-sun.jpg');      background-size: cover; background-position: center; }
     .c-card-bg.snow { background-image: url('img-snowflake.jpg'); background-size: cover; background-position: center; }
     .c-card-bg.ear  { background-image: url('img-earrings.jpg'); background-size: cover; background-position: center; }
     .c-card-bg.cross{ background-image: url('img-cross.jpg');    background-size: cover; background-position: center; }
-    /* decorative gem shapes per card */
+    .c-card-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: rgba(0,0,0,0); transition: background .4s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .c-card:hover .c-card-overlay { background: rgba(0,0,0,.45); }
+    .c-overlay-btn {
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .3s .05s, transform .3s .05s;
+      font-family: var(--sans); font-size: .7rem; letter-spacing: .2em;
+      text-transform: uppercase; padding: .65rem 1.6rem;
+      border: 1px solid var(--gold); color: var(--gold);
+      background: transparent; cursor: pointer; text-decoration: none;
+    }
+    .c-card:hover .c-overlay-btn { opacity: 1; transform: translateY(0); }
     .c-gem {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%) rotate(45deg);
       width: 120px; height: 120px;
       border: 1px solid rgba(201,168,76,.15);
-      opacity: 0; transition: opacity .4s;
+      opacity: 0; transition: opacity .4s; z-index: 1;
     }
     .c-gem::before {
       content: ''; position: absolute; inset: 16px;
@@ -169,7 +260,7 @@
     }
     .c-card:hover .c-gem { opacity: 1; }
     .c-card-info {
-      position: relative; z-index: 1;
+      position: relative; z-index: 3;
       padding: 2rem 1.75rem;
       background: linear-gradient(to top, rgba(8,8,8,.98) 0%, rgba(8,8,8,.5) 100%);
     }
@@ -177,7 +268,7 @@
     .c-name { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; margin: .2rem 0 .4rem; }
     .c-price { font-family: var(--serif); font-size: 1.05rem; color: var(--gold-light); }
 
-    /* PRICING */
+    /* ── PRICING ── */
     .pricing-wrap { max-width: 1100px; margin: 0 auto; }
     .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 3rem; }
     .p-card { background: var(--dark); padding: 2.5rem; }
@@ -191,7 +282,7 @@
     .p-features li::before { content: '— '; color: var(--gold); opacity: .6; }
     .p-custom { margin-top: 3rem; padding: 2.5rem; border: 1px solid var(--border); display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
 
-    /* PROCESS */
+    /* ── PROCESS ── */
     .process-bg { background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .process-header { max-width: 1100px; margin: 0 auto; }
     .process-steps { max-width: 1100px; margin: 3rem auto 0; display: grid; grid-template-columns: repeat(4,1fr); }
@@ -201,7 +292,7 @@
     .step-t { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin-bottom: .6rem; }
     .step-d { font-size: .8rem; opacity: .5; line-height: 1.75; }
 
-    /* QUOTE */
+    /* ── QUOTE ── */
     .quote-section { text-align: center; padding: 8rem 2.5rem; position: relative; overflow: hidden; }
     .quote-section::before {
       content: '\201C'; position: absolute; top: -3rem; left: 50%; transform: translateX(-50%);
@@ -210,12 +301,19 @@
     .quote-text { font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.6rem); font-weight: 300; font-style: italic; max-width: 720px; margin: 0 auto 1.5rem; line-height: 1.4; position: relative; }
     .quote-by { font-size: .68rem; letter-spacing: .35em; text-transform: uppercase; color: var(--gold); opacity: .65; }
 
-    /* CTA */
+    /* ── CTA ── */
     .cta-bg { background: var(--dark); border-top: 1px solid var(--border); }
-    .cta-inner { max-width: 800px; margin: 0 auto; text-align: center; }
-    .cta-inner p { opacity: .58; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.85; font-size: .95rem; }
+    .cta-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; overflow: hidden; }
+    .cta-mono {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      font-family: var(--serif); font-size: clamp(4rem, 12vw, 9rem); font-weight: 300;
+      color: rgba(201,168,76,.04); letter-spacing: .4em;
+      pointer-events: none; white-space: nowrap; will-change: transform;
+    }
+    .cta-inner p { opacity: .58; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.85; font-size: .95rem; position: relative; }
+    .cta-inner .section-label, .cta-inner .section-title, .cta-inner .btn { position: relative; }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 4rem 2.5rem 2.5rem; }
     .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
     .footer-brand p { font-size: .83rem; opacity: .45; line-height: 1.7; margin-top: 1rem; max-width: 250px; }
@@ -226,17 +324,16 @@
     .f-col ul li a:hover { opacity: 1; }
     .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; font-size: .72rem; opacity: .3; }
 
-    /* ANIMATIONS */
+    /* ── FADE-UP ── */
     .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
     .fade-up.in { opacity: 1; transform: none; }
     .fade-up.d1 { transition-delay: .1s; }
     .fade-up.d2 { transition-delay: .2s; }
     .fade-up.d3 { transition-delay: .3s; }
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .philosophy { grid-template-columns: 1fr; gap: 3rem; }
-      .collections-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -255,10 +352,23 @@
       .footer-bottom { flex-direction: column; gap: .5rem; }
       .collections-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .hero-bg::before, .hero-bg::after, .hero-gem { display: none; }
+      .cursor-dot { display: none; }
+      .cta-mono { display: none; }
     }
   </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-logo">
+    <span>S</span><span>K</span><span>A</span><span>R</span><span>L</span><span>A</span><span>T</span>
+  </div>
+  <div class="pre-bar"><div class="pre-fill" id="preFill"></div></div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -274,10 +384,16 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-gem"></div>
   <div class="hero-content">
     <p class="eyebrow">Авторська Ювелірна Майстерня · Київ</p>
-    <h1 class="hero-title">Втілена<br>точність.<br><em>Інженерна<br>краса.</em></h1>
+    <h1 class="hero-title">
+      <span class="word"><span class="word-inner">Втілена</span></span><br>
+      <span class="word"><span class="word-inner">точність.</span></span><br>
+      <em><span class="word"><span class="word-inner">Інженерна</span></span><br>
+      <span class="word"><span class="word-inner">краса.</span></span></em>
+    </h1>
     <p class="hero-sub">Кожна прикраса — союз бездоганного ремесла та індивідуального характеру. Від ескізу до вічності.</p>
     <a href="#collections" class="btn btn-lg">Переглянути колекцію →</a>
   </div>
@@ -310,14 +426,24 @@
       <p>Ювелірна марка SKARLAT народилася з переконання: справжня краса — результат інженерної думки та художнього чуття. Ми поєднуємо традиційне ремесло з CAD-проектуванням.</p>
       <p>Кожен виріб проходить шлях від математично точного ескізу до ретельного ручного огранювання. Наші майстри втілюють характер у кожному вигині металу.</p>
       <div class="stats">
-        <div><div class="stat-n">10+</div><div class="stat-l">Років<br>майстерності</div></div>
-        <div><div class="stat-n">340+</div><div class="stat-l">Унікальних<br>виробів</div></div>
-        <div><div class="stat-n">98%</div><div class="stat-l">Клієнтів<br>повертаються</div></div>
+        <div>
+          <div class="stat-n" data-target="10" data-suffix="+">10+</div>
+          <div class="stat-l">Років<br>майстерності</div>
+        </div>
+        <div>
+          <div class="stat-n" data-target="340" data-suffix="+">340+</div>
+          <div class="stat-l">Унікальних<br>виробів</div>
+        </div>
+        <div>
+          <div class="stat-n" data-target="98" data-suffix="%">98%</div>
+          <div class="stat-l">Клієнтів<br>повертаються</div>
+        </div>
       </div>
     </div>
     <div class="founder-card fade-up d1">
       <img src="img-founder.jpg" alt="Олександр Скарлат за роботою" class="founder-photo">
       <div class="founder-info">
+        <div class="founder-mono">SKARLAT</div>
         <div class="founder-role">Засновник · Майстер</div>
         <div class="founder-name">Саша<br>Скарлат</div>
         <div class="founder-quote">«Ювелірна справа — це математика,<br>перетворена на красу»</div>
@@ -340,9 +466,10 @@
     </div>
     <a href="https://t.me/SkarlatAlex" class="btn" target="_blank" rel="noopener">Вся колекція →</a>
   </div>
-  <div class="collections-grid">
+  <div class="collections-track" id="collectionsTrack">
     <div class="c-card fade-up">
       <div class="c-card-bg sun"></div>
+      <div class="c-card-overlay"><a href="https://t.me/SkarlatAlex" class="c-overlay-btn" target="_blank" rel="noopener">Переглянути</a></div>
       <div class="c-gem"></div>
       <div class="c-card-info">
         <div class="c-meta">Намисто · Колье</div>
@@ -352,6 +479,7 @@
     </div>
     <div class="c-card fade-up d1">
       <div class="c-card-bg snow"></div>
+      <div class="c-card-overlay"><a href="https://t.me/SkarlatAlex" class="c-overlay-btn" target="_blank" rel="noopener">Переглянути</a></div>
       <div class="c-gem"></div>
       <div class="c-card-info">
         <div class="c-meta">Підвіски · Кулони</div>
@@ -361,6 +489,7 @@
     </div>
     <div class="c-card fade-up d1">
       <div class="c-card-bg ear"></div>
+      <div class="c-card-overlay"><a href="https://t.me/SkarlatAlex" class="c-overlay-btn" target="_blank" rel="noopener">Переглянути</a></div>
       <div class="c-gem"></div>
       <div class="c-card-info">
         <div class="c-meta">Сережки-Пусети</div>
@@ -370,6 +499,7 @@
     </div>
     <div class="c-card fade-up d2">
       <div class="c-card-bg cross"></div>
+      <div class="c-card-overlay"><a href="https://t.me/SkarlatAlex" class="c-overlay-btn" target="_blank" rel="noopener">Переглянути</a></div>
       <div class="c-gem"></div>
       <div class="c-card-info">
         <div class="c-meta">Підвіска · Ланцюжок</div>
@@ -377,6 +507,9 @@
         <div class="c-price">від 22 000 ₴</div>
       </div>
     </div>
+  </div>
+  <div class="collections-progress">
+    <div class="collections-progress-fill" id="collectionsFill"></div>
   </div>
 </section>
 
@@ -480,6 +613,7 @@
 <!-- CTA -->
 <section class="section cta-bg">
   <div class="cta-inner fade-up">
+    <div class="cta-mono" id="ctaMono">SKARLAT</div>
     <p class="section-label">Індивідуальне замовлення</p>
     <h2 class="section-title">Ваша ідея.<br><em style="font-style:italic;font-family:var(--serif);">Наша точність.</em></h2>
     <p>Ми створюємо прикраси за індивідуальними ескізами. Від вибору каменів до фінального полірування — весь процес під вашим контролем. Терміни від 4 тижнів.</p>
@@ -527,10 +661,270 @@
 </footer>
 
 <script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+/* ═══════════════════════════════════════
+   1. PRELOADER
+═══════════════════════════════════════ */
+window.addEventListener('load', () => {
+  const fill = document.getElementById('preFill');
+  const pre  = document.getElementById('preloader');
+  setTimeout(() => { fill.style.width = '100%'; }, 300);
+  setTimeout(() => {
+    pre.classList.add('done');
+    setTimeout(() => { pre.style.display = 'none'; startHeroAnims(); }, 550);
+  }, 2600);
+});
+
+/* ═══════════════════════════════════════
+   2. SPLIT-TEXT HERO ANIMATION
+═══════════════════════════════════════ */
+function startHeroAnims() {
+  document.querySelectorAll('.word-inner').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.1) + 's';
+    requestAnimationFrame(() => el.classList.add('up'));
+  });
+  setTimeout(() => { document.querySelector('.hero-sub').classList.add('up'); }, 600);
+}
+
+/* ═══════════════════════════════════════
+   3. SCROLL PROGRESS BAR
+═══════════════════════════════════════ */
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  progressBar.style.width = pct + '%';
+}, { passive: true });
+
+/* ═══════════════════════════════════════
+   4. FADE-UP INTERSECTION OBSERVER
+═══════════════════════════════════════ */
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+/* ═══════════════════════════════════════
+   5. DIGIT COUNTERS
+═══════════════════════════════════════ */
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+function animateCounter(el) {
+  const target   = +el.dataset.target;
+  const suffix   = el.dataset.suffix;
+  const duration = target > 100 ? 2000 : target > 50 ? 1800 : 1500;
+  const start    = performance.now();
+  (function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    el.textContent = Math.round(easeOut(t) * target) + suffix;
+    if (t < 1) requestAnimationFrame(frame);
+  })(performance.now());
+}
+const statsObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    document.querySelectorAll('[data-target]').forEach(animateCounter);
+    statsObs.disconnect();
+  }
+}, { threshold: 0.5 });
+const statsEl = document.querySelector('.stats');
+if (statsEl) statsObs.observe(statsEl);
+
+/* ═══════════════════════════════════════
+   6. PARALLAX (scroll-based)
+═══════════════════════════════════════ */
+const heroGem    = document.querySelector('.hero-gem');
+const founderMono = document.querySelector('.founder-mono');
+const ctaMono    = document.getElementById('ctaMono');
+let   scrollTick = false;
+
+window.addEventListener('scroll', () => {
+  if (!scrollTick) {
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (heroGem)
+        heroGem.style.transform = `translateY(calc(-50% + ${y * 0.3}px)) rotate(45deg)`;
+      if (founderMono)
+        founderMono.style.transform = `translateY(${y * 0.08}px)`;
+      if (ctaMono)
+        ctaMono.style.transform = `translate(-50%, calc(-50% + ${(y - ctaMono.closest('section').offsetTop) * 0.2}px))`;
+      scrollTick = false;
+    });
+    scrollTick = true;
+  }
+}, { passive: true });
+
+/* ═══════════════════════════════════════
+   7. MAGNETIC BUTTONS
+═══════════════════════════════════════ */
+const isMobile = () => window.innerWidth < 768;
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    if (isMobile()) return;
+    const r  = btn.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const dx = e.clientX - cx, dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 80) {
+      btn.style.transform  = `translate(${dx * 0.3}px, ${dy * 0.3}px)`;
+      btn.style.transition = 'transform .1s ease';
+    }
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform  = '';
+    btn.style.transition = 'transform .4s ease';
+  });
+});
+
+/* ═══════════════════════════════════════
+   8. PARTICLE SYSTEM (canvas)
+═══════════════════════════════════════ */
+(function initParticles() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, mouse = { x: -999, y: -999 };
+  const COUNT = 60;
+  const particles = [];
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  for (let i = 0; i < COUNT; i++) {
+    particles.push({
+      x:     Math.random() * W,
+      y:     Math.random() * H,
+      vx:    (Math.random() - .5) * .4,
+      vy:    -(Math.random() * .6 + .2),
+      size:  Math.random() * 2 + 1,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * .02 + .01,
+    });
+  }
+
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+  canvas.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const t = performance.now() / 1000;
+    particles.forEach(p => {
+      /* mouse repulsion */
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 100) {
+        const force = (100 - dist) / 100;
+        p.vx += (dx / dist) * force * .4;
+        p.vy += (dy / dist) * force * .4;
+      }
+      /* velocity damping */
+      p.vx *= .97; p.vy *= .97;
+      /* base upward drift */
+      p.vy -= .003;
+      p.x  += p.vx;
+      p.y  += p.vy;
+      /* wrap */
+      if (p.y < -5)  { p.y = H + 5; p.x = Math.random() * W; }
+      if (p.x < -5)  p.x = W + 5;
+      if (p.x > W + 5) p.x = -5;
+      /* pulse alpha */
+      const alpha = (Math.sin(t * p.speed * 60 + p.phase) + 1) / 2 * 0.55 + .05;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,168,76,${alpha.toFixed(2)})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ═══════════════════════════════════════
+   9. LIQUID CURSOR TRAIL
+═══════════════════════════════════════ */
+(function initCursor() {
+  if (window.innerWidth < 768) return;
+  const dots = [];
+  document.addEventListener('mousemove', e => {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    dot.style.left = e.clientX + 'px';
+    dot.style.top  = e.clientY + 'px';
+    document.body.appendChild(dot);
+    dots.push(dot);
+    if (dots.length > 12) dots.shift().remove();
+    requestAnimationFrame(() => dot.classList.add('fade'));
+    setTimeout(() => { dot.remove(); const i = dots.indexOf(dot); if (i > -1) dots.splice(i, 1); }, 620);
+  }, { passive: true });
+})();
+
+/* ═══════════════════════════════════════
+   10. HORIZONTAL SCROLL — COLLECTIONS
+═══════════════════════════════════════ */
+(function initHScroll() {
+  const track = document.getElementById('collectionsTrack');
+  const fill  = document.getElementById('collectionsFill');
+  if (!track || !fill) return;
+
+  function updateFill() {
+    const max = track.scrollWidth - track.clientWidth;
+    const pct = max > 0 ? (track.scrollLeft / max) * 100 : 0;
+    fill.style.width = Math.max(10, pct) + '%';
+  }
+  updateFill();
+
+  track.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      track.scrollLeft += e.deltaY * 1.2;
+      updateFill();
+    }
+  }, { passive: false });
+
+  track.addEventListener('scroll', updateFill, { passive: true });
+
+  /* touch/drag */
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('pointerdown', e => {
+    isDown = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
+    track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener('pointerup',   () => { isDown = false; });
+  track.addEventListener('pointermove', e => {
+    if (!isDown) return;
+    const x = e.pageX - track.offsetLeft;
+    track.scrollLeft = scrollLeft - (x - startX) * 1.2;
+    updateFill();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   11. SMOOTH SCROLL
+═══════════════════════════════════════ */
+function smoothScrollTo(target, duration) {
+  duration = duration || 900;
+  const start = window.scrollY;
+  const end   = target.getBoundingClientRect().top + start - 72;
+  const t0    = performance.now();
+  function ease(t) { return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+  (function frame(now) {
+    const t = Math.min((now - t0) / duration, 1);
+    window.scrollTo(0, start + (end - start) * ease(t));
+    if (t < 1) requestAnimationFrame(frame);
+  })(performance.now());
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (target) { e.preventDefault(); smoothScrollTo(target); }
+  });
+});
 </script>
 </body>
 </html>
