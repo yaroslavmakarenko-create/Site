@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SKARLAT — Авторська Ювелірна Майстерня · Київ</title>
   <meta name="description" content="Авторські прикраси з натуральними діамантами. CAD-проектування, ручна робота, довічна гарантія. Київ.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Crect x='9' y='9' width='14' height='14' fill='none' stroke='%23B8976A' stroke-width='1' transform='rotate(45 16 16)'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='13' fill='%23B8976A' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://site-three-murex-80.vercel.app/">
+  <meta property="og:title" content="SKARLAT — Авторська Ювелірна Майстерня · Київ">
+  <meta property="og:description" content="Авторські прикраси з натуральними діамантами. CAD-проектування, ручна робота, довічна гарантія.">
+  <meta property="og:image" content="https://site-three-murex-80.vercel.app/img-sun.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SKARLAT — Авторська Ювелірна Майстерня">
+  <meta name="twitter:description" content="Авторські прикраси з натуральними діамантами. Київ.">
+  <meta name="twitter:image" content="https://site-three-murex-80.vercel.app/img-sun.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -360,6 +370,70 @@
       #back-top { display: none; }
     }
 
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1px;
+      background: var(--white);
+      transition: transform .3s ease, opacity .3s ease, width .3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    @media (max-width: 600px) { .hamburger { display: flex; } }
+
+    /* ── MOBILE MENU ── */
+    #mobile-menu {
+      position: fixed; inset: 0; z-index: 99;
+      background: rgba(8,8,8,.98); backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0; opacity: 0; pointer-events: none;
+      transition: opacity .4s ease;
+    }
+    #mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mm-link {
+      font-family: var(--serif); font-size: 2.2rem; font-weight: 300;
+      color: var(--white); text-decoration: none; letter-spacing: .08em;
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .3s, transform .3s, color .3s;
+      padding: .55rem 0; display: block;
+    }
+    #mobile-menu.open .mm-link { opacity: .75; transform: translateY(0); }
+    #mobile-menu.open .mm-link:nth-child(1) { transition-delay: .08s; }
+    #mobile-menu.open .mm-link:nth-child(2) { transition-delay: .14s; }
+    #mobile-menu.open .mm-link:nth-child(3) { transition-delay: .2s; font-size: 1.1rem; font-family: var(--sans); letter-spacing: .05em; opacity: 0; }
+    #mobile-menu.open .mm-link:nth-child(3) { opacity: .5; }
+    #mobile-menu.open .mm-link:nth-child(4) { transition-delay: .26s; }
+    .mm-link:hover { opacity: 1 !important; color: var(--gold); }
+    .mm-cta {
+      font-family: var(--sans) !important; font-size: .8rem !important;
+      letter-spacing: .25em !important; text-transform: uppercase;
+      color: var(--gold) !important; border: 1px solid var(--gold);
+      padding: .9rem 2.5rem !important; margin-top: 1.5rem;
+    }
+    .mm-cta:hover { background: var(--gold); color: var(--black) !important; }
+    nav.menu-open { background: rgba(8,8,8,.98) !important; }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 5.5rem; left: 50%;
+      transform: translateX(-50%) translateY(14px);
+      z-index: 9000; background: var(--dark);
+      border: 1px solid rgba(184,151,106,.45);
+      padding: .8rem 2rem; font-size: .72rem;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); white-space: nowrap;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── LOGO LETTERS ── */
+    .logo-letter { display: inline-block; transition: transform .4s ease, opacity .4s ease; }
+
     /* ── NAV SCROLL EFFECT ── */
     nav { transition: background .4s ease, border-bottom .4s ease; }
     nav.scrolled {
@@ -461,7 +535,18 @@
     <a href="tel:+380673817442">+380 67 381 74 42</a>
     <a href="https://t.me/SkarlatAlex" class="btn" target="_blank" rel="noopener">Написати →</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" role="dialog" aria-label="Навігація">
+  <a href="#collections" class="mm-link">Колекції</a>
+  <a href="#process" class="mm-link">Процес</a>
+  <a href="tel:+380673817442" class="mm-link">+380 67 381 74 42</a>
+  <a href="https://t.me/SkarlatAlex" class="mm-link mm-cta" target="_blank" rel="noopener">Написати →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -741,6 +826,9 @@
     <span>Розроблено з увагою до деталей</span>
   </div>
 </footer>
+
+<!-- TOAST -->
+<div id="toast" role="status" aria-live="polite">Переходимо до Telegram →</div>
 
 <!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true">
@@ -1123,6 +1211,88 @@ document.querySelectorAll('.c-card').forEach(card => {
   window.addEventListener('scroll', () => {
     navEl.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
+})();
+
+/* ═══════════════════════════════════════
+   16. LOGO LETTER ANIMATION
+═══════════════════════════════════════ */
+(function initLogoAnim() {
+  document.querySelectorAll('.logo').forEach(logo => {
+    const text = logo.textContent.trim();
+    logo.textContent = '';
+    [...text].forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'logo-letter';
+      s.textContent = ch;
+      logo.appendChild(s);
+    });
+  });
+  const navLogo = document.querySelector('nav .logo');
+  if (!navLogo || isMobile()) return;
+  navLogo.addEventListener('mouseenter', () => {
+    navLogo.querySelectorAll('.logo-letter').forEach((s, i) => {
+      const tx  = (Math.random() - .5) * 20;
+      const ty  = (Math.random() - .5) * 14;
+      const rot = (Math.random() - .5) * 38;
+      s.style.transition = `transform ${0.16 + i * 0.03}s ease, opacity ${0.16 + i * 0.03}s ease`;
+      s.style.transform  = `translate(${tx}px,${ty}px) rotate(${rot}deg)`;
+      s.style.opacity    = '.3';
+    });
+  });
+  navLogo.addEventListener('mouseleave', () => {
+    navLogo.querySelectorAll('.logo-letter').forEach((s, i) => {
+      s.style.transition = `transform ${0.3 + i * 0.04}s cubic-bezier(.16,1,.3,1), opacity ${0.25 + i * 0.03}s ease`;
+      s.style.transform  = '';
+      s.style.opacity    = '';
+    });
+  });
+})();
+
+/* ═══════════════════════════════════════
+   17. HAMBURGER / MOBILE MENU
+═══════════════════════════════════════ */
+(function initHamburger() {
+  const hbg = document.getElementById('hamburger');
+  const mm  = document.getElementById('mobile-menu');
+  const nav = document.querySelector('nav');
+  if (!hbg || !mm) return;
+
+  function openMenu() {
+    hbg.classList.add('open');
+    hbg.setAttribute('aria-expanded', 'true');
+    mm.classList.add('open');
+    nav.classList.add('menu-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    hbg.classList.remove('open');
+    hbg.setAttribute('aria-expanded', 'false');
+    mm.classList.remove('open');
+    nav.classList.remove('menu-open');
+    document.body.style.overflow = '';
+  }
+
+  hbg.addEventListener('click', () =>
+    mm.classList.contains('open') ? closeMenu() : openMenu()
+  );
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+})();
+
+/* ═══════════════════════════════════════
+   18. TOAST NOTIFICATION
+═══════════════════════════════════════ */
+(function initToast() {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  let timer;
+  document.querySelectorAll('a[href*="t.me"]').forEach(a => {
+    a.addEventListener('click', () => {
+      clearTimeout(timer);
+      toast.classList.add('show');
+      timer = setTimeout(() => toast.classList.remove('show'), 2800);
+    });
+  });
 })();
 </script>
 </body>
