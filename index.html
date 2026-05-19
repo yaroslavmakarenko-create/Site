@@ -54,10 +54,11 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,.07) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 30% 70%, rgba(201,168,76,.04) 0%, transparent 60%),
-        linear-gradient(135deg, #0e0c08 0%, #080808 50%, #0a0a0a 100%);
+      background-image:
+        linear-gradient(to right, rgba(8,8,8,.88) 0%, rgba(8,8,8,.55) 50%, rgba(8,8,8,.3) 100%),
+        url('img-sun.jpg');
+      background-size: cover;
+      background-position: center right;
     }
     /* decorative diamond shape */
     .hero-bg::before {
