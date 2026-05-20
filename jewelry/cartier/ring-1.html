@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartier Love Ring — SKARLAT Jewellery</title>
+  <meta name="description" content="Cartier Love Ring (B4085100) — біле золото 750. Ціна по запиту. SKARLAT Jewellery, Київ.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Crect x='9' y='9' width='14' height='14' fill='none' stroke='%23B8976A' stroke-width='1' transform='rotate(45 16 16)'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='13' fill='%23B8976A' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --card: #161616;
+      --border: rgba(184,151,106,0.18);
+      --gold: #B8976A;
+      --gold-light: #D4B896;
+      --gold-dim: rgba(184,151,106,0.08);
+      --white: #f0ece4;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', sans-serif;
+    }
+    body { background: var(--black); color: var(--white); font-family: var(--sans); font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+
+    /* SCROLL PROGRESS */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: var(--gold); z-index: 10000; width: 0%;
+      pointer-events: none; transition: width .05s linear;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 1.4rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(8,8,8,.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family: var(--serif); font-size: 1.45rem; font-weight: 300; letter-spacing: .35em; color: var(--gold); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: .78rem; letter-spacing: .1em; opacity: .6; transition: opacity .3s; }
+    .nav-links a:hover { opacity: 1; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .75rem 2rem;
+      border: 1px solid var(--gold); color: var(--gold);
+      text-decoration: none; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+      transition: background .3s, color .3s; background: transparent; cursor: pointer;
+    }
+    .btn:hover { background: var(--gold); color: var(--black); }
+    .lang-switch { display: flex; align-items: center; gap: .35rem; }
+    .lang-btn { background: none; border: none; color: var(--white); font-size: .72rem; letter-spacing: .08em; cursor: pointer; opacity: .38; transition: opacity .25s, color .25s; font-family: var(--sans); padding: 0; }
+    .lang-btn.active { opacity: 1; color: var(--gold); }
+    .lang-sep { opacity: .18; font-size: .65rem; color: var(--white); }
+
+    /* HAMBURGER */
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--white); transition: transform .3s, opacity .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    #mobile-menu {
+      display: none; position: fixed; inset: 0; background: rgba(8,8,8,.98);
+      z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    }
+    #mobile-menu.open { display: flex; }
+    .mm-link { color: var(--white); text-decoration: none; font-family: var(--serif); font-size: 2rem; font-weight: 300; letter-spacing: .15em; opacity: .7; transition: opacity .3s, color .3s; }
+    .mm-link:hover { opacity: 1; color: var(--gold); }
+    .mm-cta { color: var(--gold); border: 1px solid var(--gold); font-family: var(--sans); font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; padding: 1rem 2.5rem; margin-top: 1rem; }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* BREADCRUMBS */
+    .breadcrumbs {
+      padding: 7rem 2.5rem 1.5rem;
+      font-size: .72rem; letter-spacing: .08em;
+      color: var(--white); opacity: .45;
+      max-width: 1300px; margin: 0 auto;
+    }
+    .breadcrumbs a { color: inherit; text-decoration: none; transition: opacity .2s; }
+    .breadcrumbs a:hover { opacity: 1; }
+    .breadcrumbs span { margin: 0 .5rem; opacity: .4; }
+    .breadcrumbs .current { color: var(--gold); opacity: .8; }
+    @media (max-width: 768px) {
+      .breadcrumbs { padding: 5.5rem 1.25rem 1rem; }
+    }
+
+    /* PRODUCT LAYOUT */
+    .product-wrap {
+      max-width: 1300px; margin: 0 auto;
+      padding: 0 2.5rem 5rem;
+      display: grid; grid-template-columns: 60% 40%;
+      gap: 4rem; align-items: start;
+    }
+    @media (max-width: 900px) {
+      .product-wrap { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 1.25rem 3rem; }
+    }
+
+    /* IMAGE GALLERY */
+    .gallery { display: flex; flex-direction: column; gap: 1.25rem; }
+    .gallery-main {
+      width: 100%; aspect-ratio: 4/5;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; cursor: zoom-in;
+    }
+    .gallery-main-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      opacity: .18;
+    }
+    .gallery-main-placeholder svg { width: 80px; height: 80px; }
+    .gallery-main-placeholder span { font-family: var(--serif); font-size: 1rem; letter-spacing: .15em; }
+    .gallery-main::after {
+      content: ''; position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      width: 60px; height: 60px;
+      border-top: 1px solid var(--border); border-right: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .gallery-main::before {
+      content: ''; position: absolute;
+      bottom: 1.5rem; left: 1.5rem;
+      width: 60px; height: 60px;
+      border-bottom: 1px solid var(--border); border-left: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .gallery-thumbs { display: flex; gap: .75rem; }
+    .thumb {
+      width: 72px; height: 72px; flex-shrink: 0;
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color .3s;
+      position: relative; overflow: hidden;
+    }
+    .thumb:hover { border-color: rgba(184,151,106,.45); }
+    .thumb.active { border-color: var(--gold); }
+    .thumb-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .thumb-dot { width: 8px; height: 8px; background: var(--gold); opacity: .2; border-radius: 50%; }
+    .thumb.active .thumb-dot { opacity: .6; }
+    @media (max-width: 480px) {
+      .thumb { width: 56px; height: 56px; }
+    }
+
+    /* PRODUCT INFO */
+    .product-info { display: flex; flex-direction: column; gap: 1.75rem; }
+    .product-brand {
+      font-size: .65rem; letter-spacing: .45em; text-transform: uppercase;
+      color: var(--gold); display: flex; align-items: center; gap: .75rem;
+    }
+    .product-brand::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .product-name {
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300; line-height: 1.1;
+    }
+    .product-article {
+      font-size: .72rem; letter-spacing: .12em; opacity: .35;
+      font-family: var(--sans);
+    }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+      padding: .4rem .9rem; border-radius: 2px;
+    }
+    .status-badge.instock {
+      background: rgba(72,183,112,.08); border: 1px solid rgba(72,183,112,.25);
+      color: #48b770;
+    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; } 50% { opacity: .4; }
+    }
+    .divider { height: 1px; background: var(--border); }
+
+    /* SPECS TABLE */
+    .specs { width: 100%; border-collapse: collapse; }
+    .specs tr { border-bottom: 1px solid var(--border); }
+    .specs tr:last-child { border-bottom: none; }
+    .specs td { padding: .85rem 0; font-size: .83rem; vertical-align: top; }
+    .specs td:first-child { color: var(--white); opacity: .4; width: 42%; letter-spacing: .05em; }
+    .specs td:last-child { color: var(--white); font-weight: 300; }
+
+    /* PRICE & CTA */
+    .price-row { display: flex; align-items: baseline; gap: 1rem; }
+    .price-label { font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; opacity: .4; }
+    .price-value {
+      font-family: var(--serif); font-size: 1.75rem; font-weight: 300;
+      color: var(--gold);
+    }
+    .btn-primary {
+      width: 100%; padding: 1.1rem 2rem;
+      border: 1px solid var(--gold); background: transparent;
+      color: var(--gold); font-family: var(--sans);
+      font-size: .78rem; letter-spacing: .2em; text-transform: uppercase;
+      cursor: pointer; transition: background .3s, color .3s;
+      display: flex; align-items: center; justify-content: center; gap: .75rem;
+    }
+    .btn-primary:hover { background: var(--gold); color: var(--black); }
+    .contact-hint {
+      font-size: .75rem; opacity: .45; text-align: center; line-height: 1.6;
+    }
+    .contact-hint a { color: var(--gold); text-decoration: none; opacity: 1; transition: opacity .2s; }
+    .contact-hint a:hover { opacity: .7; }
+
+    /* RELATED PRODUCTS */
+    .related { padding: 4rem 2.5rem 6rem; max-width: 1300px; margin: 0 auto; }
+    .related-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+    .related-title { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 300; }
+    .related-link { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); text-decoration: none; opacity: .7; transition: opacity .2s; }
+    .related-link:hover { opacity: 1; }
+    .related-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
+    .product-card {
+      background: var(--card); border: 1px solid var(--border);
+      transition: border-color .3s; overflow: hidden; text-decoration: none; color: inherit;
+      display: block;
+    }
+    .product-card:hover { border-color: rgba(184,151,106,.4); }
+    .product-card:hover .pc-img-placeholder { opacity: .25; }
+    .pc-img {
+      aspect-ratio: 1/1; background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .pc-img-placeholder { opacity: .12; transition: opacity .3s; }
+    .pc-img-placeholder svg { width: 48px; height: 48px; }
+    .pc-body { padding: 1.25rem; }
+    .pc-brand { font-size: .6rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: .4rem; }
+    .pc-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; margin-bottom: .6rem; line-height: 1.2; }
+    .pc-price { font-size: .72rem; color: var(--gold-light); letter-spacing: .08em; }
+    .pc-status { display: inline-flex; align-items: center; gap: .35rem; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; margin-top: .5rem; }
+    .pc-status.in { color: #48b770; }
+    .pc-status.order { color: var(--gold); opacity: .7; }
+    @media (max-width: 900px) {
+      .related-grid { grid-template-columns: repeat(2,1fr); }
+      .related { padding: 3rem 1.25rem 4rem; }
+    }
+    @media (max-width: 480px) {
+      .related-grid { grid-template-columns: repeat(2,1fr); gap: .75rem; }
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 3rem 2.5rem 2rem; }
+    .footer-compact { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; letter-spacing: .35em; color: var(--gold); text-decoration: none; }
+    .footer-contacts { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-contacts a { color: var(--white); text-decoration: none; font-size: .78rem; opacity: .45; transition: opacity .3s; letter-spacing: .05em; }
+    .footer-contacts a:hover { opacity: 1; }
+    .footer-copy { font-size: .68rem; opacity: .25; letter-spacing: .05em; width: 100%; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    @media (max-width: 600px) {
+      footer { padding: 2.5rem 1.25rem 1.5rem; }
+      .footer-compact { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.85);
+      z-index: 5000; display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem; opacity: 0; pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 3rem; width: 100%; max-width: 520px;
+      position: relative; transform: translateY(20px);
+      transition: transform .35s ease;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-close {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      background: none; border: none; color: var(--white); opacity: .4;
+      font-size: 1.2rem; cursor: pointer; transition: opacity .2s;
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-close:hover { opacity: 1; }
+    .modal-title { font-family: var(--serif); font-size: 1.75rem; font-weight: 300; margin-bottom: .35rem; }
+    .modal-sub { font-size: .78rem; color: var(--gold); opacity: .7; letter-spacing: .08em; margin-bottom: 2rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; opacity: .5; margin-bottom: .5rem; }
+    .form-input, .form-textarea {
+      width: 100%; padding: .85rem 1rem;
+      background: var(--dark); border: 1px solid var(--border);
+      color: var(--white); font-family: var(--sans); font-size: .88rem; font-weight: 300;
+      outline: none; transition: border-color .25s;
+      resize: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: rgba(184,151,106,.5); }
+    .form-textarea { min-height: 100px; }
+    .btn-submit {
+      width: 100%; padding: 1rem 2rem;
+      border: 1px solid var(--gold); background: var(--gold);
+      color: var(--black); font-family: var(--sans);
+      font-size: .78rem; letter-spacing: .2em; text-transform: uppercase;
+      cursor: pointer; transition: background .3s, color .3s, border-color .3s;
+      margin-top: .5rem;
+    }
+    .btn-submit:hover { background: transparent; color: var(--gold); }
+    .modal-success { display: none; text-align: center; padding: 2rem 0; }
+    .modal-success.show { display: block; }
+    .modal-success svg { width: 52px; height: 52px; margin-bottom: 1.25rem; }
+    .modal-success h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; margin-bottom: .75rem; }
+    .modal-success p { font-size: .85rem; opacity: .6; margin-bottom: 1.5rem; line-height: 1.7; }
+    .modal-success .btn-tg {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .9rem 2rem; border: 1px solid var(--gold);
+      color: var(--gold); text-decoration: none;
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      transition: background .3s, color .3s;
+    }
+    .modal-success .btn-tg:hover { background: var(--gold); color: var(--black); }
+
+    /* FADE-UP */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.in { opacity: 1; transform: none; }
+    .fade-up.d1 { transition-delay: .1s; } .fade-up.d2 { transition-delay: .2s; } .fade-up.d3 { transition-delay: .3s; }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav>
+  <a href="/" class="logo">SKARLAT</a>
+  <div class="nav-links">
+    <a href="/jewelry/" data-ua="Каталог" data-ru="Каталог">Каталог</a>
+    <a href="/#collections" data-ua="Колекції" data-ru="Коллекции">Колекції</a>
+    <a href="/about/" data-ua="Про нас" data-ru="О нас">Про нас</a>
+    <a href="tel:+380673817442">+380 67 381 74 42</a>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="ua">UA</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="ru">RU</button>
+    </div>
+    <a href="https://t.me/SkarlatAlex" class="btn" target="_blank" rel="noopener" data-ua="Написати →" data-ru="Написать →">Написати →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="mobile-menu" role="dialog">
+  <a href="/jewelry/" class="mm-link" data-ua="Каталог" data-ru="Каталог">Каталог</a>
+  <a href="/#collections" class="mm-link" data-ua="Колекції" data-ru="Коллекции">Колекції</a>
+  <a href="/about/" class="mm-link" data-ua="Про нас" data-ru="О нас">Про нас</a>
+  <a href="tel:+380673817442" class="mm-link">+380 67 381 74 42</a>
+  <a href="https://t.me/SkarlatAlex" class="mm-link mm-cta" target="_blank" rel="noopener" data-ua="Написати →" data-ru="Написать →">Написати →</a>
+</div>
+
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs">
+  <a href="/" data-ua="Головна" data-ru="Главная">Головна</a>
+  <span>／</span>
+  <a href="/jewelry/" data-ua="Каталог" data-ru="Каталог">Каталог</a>
+  <span>／</span>
+  <a href="/jewelry/?brand=cartier">Cartier</a>
+  <span>／</span>
+  <span class="current">Love Ring</span>
+</div>
+
+<!-- PRODUCT -->
+<main>
+  <div class="product-wrap">
+
+    <!-- GALLERY -->
+    <div class="gallery fade-up">
+      <div class="gallery-main" id="main-photo">
+        <div class="gallery-main-placeholder">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="28" stroke="#B8976A" stroke-width="1"/>
+            <circle cx="40" cy="40" r="18" stroke="#B8976A" stroke-width="1"/>
+            <path d="M40 12 L40 68 M12 40 L68 40" stroke="#B8976A" stroke-width=".5" stroke-dasharray="3 3"/>
+          </svg>
+          <span>Cartier Love Ring</span>
+        </div>
+      </div>
+      <div class="gallery-thumbs">
+        <div class="thumb active" data-idx="0"><div class="thumb-inner"><div class="thumb-dot"></div></div></div>
+        <div class="thumb" data-idx="1"><div class="thumb-inner"><div class="thumb-dot"></div></div></div>
+        <div class="thumb" data-idx="2"><div class="thumb-inner"><div class="thumb-dot"></div></div></div>
+        <div class="thumb" data-idx="3"><div class="thumb-inner"><div class="thumb-dot"></div></div></div>
+        <div class="thumb" data-idx="4"><div class="thumb-inner"><div class="thumb-dot"></div></div></div>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="product-info">
+
+      <div class="fade-up d1">
+        <div class="product-brand">Cartier</div>
+        <h1 class="product-name">Love Ring</h1>
+        <div class="product-article">Артикул: B4085100</div>
+      </div>
+
+      <div class="fade-up d2">
+        <span class="status-badge instock">
+          <span class="status-dot"></span>
+          <span data-ua="В наявності" data-ru="В наличии">В наявності</span>
+        </span>
+      </div>
+
+      <div class="divider fade-up d2"></div>
+
+      <div class="fade-up d2">
+        <table class="specs">
+          <tr>
+            <td data-ua="Колекція" data-ru="Коллекция">Колекція</td>
+            <td>Love</td>
+          </tr>
+          <tr>
+            <td data-ua="Матеріал" data-ru="Материал">Матеріал</td>
+            <td data-ua="Біле золото 750" data-ru="Белое золото 750">Біле золото 750</td>
+          </tr>
+          <tr>
+            <td data-ua="Розмір" data-ru="Размер">Розмір</td>
+            <td>52</td>
+          </tr>
+          <tr>
+            <td data-ua="Камені" data-ru="Камни">Камені</td>
+            <td data-ua="Без каменів" data-ru="Без камней">Без каменів</td>
+          </tr>
+          <tr>
+            <td data-ua="Артикул" data-ru="Артикул">Артикул</td>
+            <td>B4085100</td>
+          </tr>
+          <tr>
+            <td data-ua="Країна" data-ru="Страна">Країна</td>
+            <td data-ua="Франція" data-ru="Франция">Франція</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="divider fade-up d3"></div>
+
+      <div class="fade-up d3">
+        <div class="price-row" style="margin-bottom:1.5rem;">
+          <span class="price-label" data-ua="Вартість" data-ru="Стоимость">Вартість</span>
+          <span class="price-value" data-ua="Ціна по запиту" data-ru="Цена по запросу">Ціна по запиту</span>
+        </div>
+        <button class="btn-primary" id="open-modal" data-ua="Уточнити ціну →" data-ru="Уточнить цену →">Уточнити ціну →</button>
+        <p class="contact-hint" style="margin-top:1rem;">
+          <span data-ua="Або напишіть нам у " data-ru="Или напишите нам в ">Або напишіть нам у </span>
+          <a href="https://t.me/SkarlatAlex" target="_blank" rel="noopener">Telegram</a>
+          <span data-ua=" — відповімо впродовж 15 хвилин" data-ru=" — ответим в течение 15 минут"> — відповімо впродовж 15 хвилин</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="related">
+    <div class="related-header fade-up">
+      <h2 class="related-title" data-ua="Інші товари Cartier" data-ru="Другие товары Cartier">Інші товари Cartier</h2>
+      <a href="/jewelry/?brand=cartier" class="related-link" data-ua="Весь асортимент →" data-ru="Весь ассортимент →">Весь асортимент →</a>
+    </div>
+    <div class="related-grid">
+
+      <a href="#" class="product-card fade-up d1">
+        <div class="pc-img">
+          <div class="pc-img-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="16" stroke="#B8976A" stroke-width="1"/>
+              <circle cx="24" cy="24" r="10" stroke="#B8976A" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-brand">Cartier</div>
+          <div class="pc-name">Love Ring — Rose Gold</div>
+          <div class="pc-price" data-ua="Ціна по запиту" data-ru="Цена по запросу">Ціна по запиту</div>
+          <div class="pc-status in"><span class="status-dot"></span><span data-ua="В наявності" data-ru="В наличии">В наявності</span></div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card fade-up d2">
+        <div class="pc-img">
+          <div class="pc-img-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="28" height="28" stroke="#B8976A" stroke-width="1" transform="rotate(45 24 24)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-brand">Cartier</div>
+          <div class="pc-name">Love Bracelet — Yellow Gold</div>
+          <div class="pc-price" data-ua="Ціна по запиту" data-ru="Цена по запросу">Ціна по запиту</div>
+          <div class="pc-status order"><span>◉</span><span data-ua="Під замовлення" data-ru="Под заказ">Під замовлення</span></div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card fade-up d3">
+        <div class="pc-img">
+          <div class="pc-img-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 8 L38 18 L32 36 H16 L10 18 Z" stroke="#B8976A" stroke-width="1"/>
+              <circle cx="24" cy="24" r="5" stroke="#B8976A" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-brand">Cartier</div>
+          <div class="pc-name">Panthère Pendant</div>
+          <div class="pc-price" data-ua="Ціна по запиту" data-ru="Цена по запросу">Ціна по запиту</div>
+          <div class="pc-status in"><span class="status-dot"></span><span data-ua="В наявності" data-ru="В наличии">В наявності</span></div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card fade-up d3">
+        <div class="pc-img">
+          <div class="pc-img-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 36 L24 8 L36 36" stroke="#B8976A" stroke-width="1"/>
+              <line x1="16" y1="28" x2="32" y2="28" stroke="#B8976A" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-brand">Cartier</div>
+          <div class="pc-name">Juste un Clou Bracelet</div>
+          <div class="pc-price" data-ua="Ціна по запиту" data-ru="Цена по запросу">Ціна по запиту</div>
+          <div class="pc-status order"><span>◉</span><span data-ua="Під замовлення" data-ru="Под заказ">Під замовлення</span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-compact">
+    <a href="/" class="footer-logo">SKARLAT</a>
+    <div class="footer-contacts">
+      <a href="tel:+380673817442">+380 67 381 74 42</a>
+      <a href="https://t.me/SkarlatAlex" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://instagram.com/skarlatalex" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-copy">
+      <span data-ua="© 2024 SKARLAT Jewellery · Київ · Усі права захищені" data-ru="© 2024 SKARLAT Jewellery · Киев · Все права защищены">© 2024 SKARLAT Jewellery · Київ · Усі права захищені</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" aria-modal="true" role="dialog">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Закрити">✕</button>
+
+    <div id="modal-form-wrap">
+      <h2 class="modal-title" data-ua="Уточнити ціну" data-ru="Уточнить цену">Уточнити ціну</h2>
+      <p class="modal-sub">Cartier Love Ring — B4085100</p>
+      <form id="inquiry-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="f-name" data-ua="Ваше ім'я" data-ru="Ваше имя">Ваше ім'я</label>
+          <input class="form-input" type="text" id="f-name" name="name" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-phone" data-ua="Номер телефону" data-ru="Номер телефона">Номер телефону</label>
+          <input class="form-input" type="tel" id="f-phone" name="phone" required autocomplete="tel" placeholder="+380 __ ___ __ __">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-msg" data-ua="Повідомлення" data-ru="Сообщение">Повідомлення</label>
+          <textarea class="form-textarea" id="f-msg" name="message">Cartier Love Ring (B4085100) — уточнити ціну та наявність</textarea>
+        </div>
+        <button type="submit" class="btn-submit" data-ua="Надіслати запит" data-ru="Отправить запрос">Надіслати запит</button>
+      </form>
+    </div>
+
+    <div class="modal-success" id="modal-success">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="26" cy="26" r="24" stroke="#B8976A" stroke-width="1"/>
+        <path d="M16 26 L22 32 L36 18" stroke="#B8976A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3 data-ua="Запит надіслано" data-ru="Запрос отправлен">Запит надіслано</h3>
+      <p data-ua="Дякуємо! Ми зв'яжемося з вами найближчим часом. Або напишіть нам напряму:" data-ru="Спасибо! Мы свяжемся с вами в ближайшее время. Или напишите нам напрямую:">Дякуємо! Ми зв'яжемося з вами найближчим часом. Або напишіть нам напряму:</p>
+      <a href="https://t.me/SkarlatAlex" class="btn-tg" target="_blank" rel="noopener" data-ua="Написати в Telegram →" data-ru="Написать в Telegram →">Написати в Telegram →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── LANG ──
+(function(){var K='skarlat_lang';function a(l){document.documentElement.setAttribute('data-lang',l);document.querySelectorAll('[data-ua]').forEach(function(e){e.textContent=l==='ru'?(e.dataset.ru||e.dataset.ua):e.dataset.ua;});document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l);});localStorage.setItem(K,l);}document.addEventListener('DOMContentLoaded',function(){var s=localStorage.getItem(K)||'ua';a(s);document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){a(b.dataset.lang);});});});})();
+
+// ── HAMBURGER ──
+(function(){var h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),n=document.querySelector('nav');if(!h||!m)return;function o(){h.classList.add('open');m.classList.add('open');n.classList.add('menu-open');document.body.style.overflow='hidden';}function c(){h.classList.remove('open');m.classList.remove('open');n.classList.remove('menu-open');document.body.style.overflow='';}h.addEventListener('click',function(){m.classList.contains('open')?c():o();});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c);});document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});})();
+
+// ── SCROLL PROGRESS ──
+(function(){var bar=document.getElementById('scroll-progress');if(!bar)return;function upd(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(h>0?window.scrollY/h*100:0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+
+// ── FADE-UP ──
+(function(){var els=document.querySelectorAll('.fade-up');if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('in');obs.unobserve(entry.target);}});},{threshold:0.1});els.forEach(function(e){obs.observe(e);});})();
+
+// ── THUMBNAIL GALLERY ──
+(function(){var thumbs=document.querySelectorAll('.thumb');thumbs.forEach(function(t){t.addEventListener('click',function(){thumbs.forEach(function(x){x.classList.remove('active');});t.classList.add('active');});});})();
+
+// ── MODAL ──
+(function(){
+  var overlay=document.getElementById('modal-overlay');
+  var openBtn=document.getElementById('open-modal');
+  var closeBtn=document.getElementById('modal-close');
+  var form=document.getElementById('inquiry-form');
+  var formWrap=document.getElementById('modal-form-wrap');
+  var success=document.getElementById('modal-success');
+
+  function open(){overlay.classList.add('open');document.body.style.overflow='hidden';}
+  function close(){overlay.classList.remove('open');document.body.style.overflow='';}
+
+  if(openBtn) openBtn.addEventListener('click',open);
+  if(closeBtn) closeBtn.addEventListener('click',close);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+
+  if(form) form.addEventListener('submit',function(e){
+    e.preventDefault();
+    formWrap.style.display='none';
+    success.classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>

@@ -370,6 +370,59 @@
       #back-top { display: none; }
     }
 
+    /* ── LANG SWITCH ── */
+    .lang-switch { display: flex; align-items: center; gap: .35rem; }
+    .lang-btn { background: none; border: none; color: var(--white); font-size: .72rem; letter-spacing: .08em; cursor: pointer; opacity: .38; transition: opacity .25s, color .25s; font-family: var(--sans); padding: 0; }
+    .lang-btn.active { opacity: 1; color: var(--gold); }
+    .lang-sep { opacity: .18; font-size: .65rem; color: var(--white); }
+
+    /* ── SLIDER ── */
+    .slider-section { position: relative; height: 60vh; min-height: 360px; overflow: hidden; }
+    .slider { position: relative; height: 100%; }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; display: flex; align-items: flex-end; padding: 4rem 2.5rem; }
+    .slide.active { opacity: 1; }
+    .slide-bg { position: absolute; inset: 0; }
+    .slide-bg-1 { background: linear-gradient(135deg, #0d0d0d 0%, #1a1510 100%); }
+    .slide-bg-2 { background: linear-gradient(135deg, #0a0d10 0%, #101520 100%); }
+    .slide-bg-3 { background: linear-gradient(135deg, #0d0a10 0%, #16101a 100%); }
+    .slide-bg::after { content: ''; position: absolute; right: 10%; top: 50%; transform: translateY(-50%) rotate(45deg); width: min(35vw, 400px); height: min(35vw, 400px); border: 1px solid rgba(184,151,106,.1); box-shadow: inset 0 0 60px rgba(184,151,106,.04); }
+    .slide-content { position: relative; z-index: 1; }
+    .slide-title { font-family: var(--serif); font-size: clamp(2rem, 6vw, 4rem); font-weight: 300; margin: .5rem 0 1.5rem; }
+    .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: 1px solid rgba(184,151,106,.25); color: var(--gold); width: 44px; height: 44px; cursor: pointer; font-size: 1.1rem; transition: background .3s, border-color .3s; z-index: 2; }
+    .slider-arrow:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .slider-prev { left: 1.5rem; }
+    .slider-next { right: 1.5rem; }
+    .slider-dots { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: .6rem; z-index: 2; }
+    .slider-dot { width: 20px; height: 1px; background: rgba(184,151,106,.3); border: none; cursor: pointer; transition: background .3s, width .3s; padding: 0; }
+    .slider-dot.active { background: var(--gold); width: 32px; }
+
+    /* ── BRANDS GRID ── */
+    .brands-section { background: var(--dark); }
+    .brands-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; margin-top: 3rem; }
+    .brand-card { background: var(--dark); padding: 2.5rem 1.5rem; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: background .3s; }
+    .brand-card:hover { background: var(--card); }
+    .brand-name { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; color: var(--white); letter-spacing: .12em; opacity: .55; transition: opacity .3s, color .3s; }
+    .brand-card:hover .brand-name { opacity: 1; color: var(--gold); }
+    @media (max-width: 900px) { .brands-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px) { .brands-grid { grid-template-columns: repeat(2, 1fr); } .slide-title { font-size: 1.8rem; } }
+
+    /* ── IN STOCK PREVIEW ── */
+    .in-stock-header { max-width: 1200px; margin: 0 auto 3rem; display: flex; justify-content: space-between; align-items: flex-end; }
+    .in-stock-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+    .prod-card { background: var(--card); text-decoration: none; display: flex; flex-direction: column; transition: background .3s; position: relative; }
+    .prod-card:hover { background: #1c1c1c; }
+    .prod-img { aspect-ratio: 3/4; background: #141414; position: relative; overflow: hidden; }
+    .prod-img::before { content: ''; position: absolute; inset: 25%; border: 1px solid rgba(184,151,106,.12); transform: rotate(45deg); }
+    .prod-info { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: .3rem; }
+    .prod-brand { font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); opacity: .8; }
+    .prod-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; color: var(--white); line-height: 1.3; }
+    .prod-status { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; margin-top: auto; padding-top: .5rem; }
+    .status-in { color: #7ab87a; }
+    .status-order { color: var(--gold); opacity: .6; }
+    .prod-btn { margin: 0 1.25rem 1.25rem; font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; padding: .65rem; border: 1px solid rgba(184,151,106,.35); color: var(--gold); background: none; text-align: center; text-decoration: none; transition: background .3s, border-color .3s; display: block; }
+    .prod-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    @media (max-width: 900px) { .in-stock-grid { grid-template-columns: repeat(2, 1fr); } .in-stock-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; } }
+
     /* ── HAMBURGER ── */
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
@@ -528,12 +581,19 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">SKARLAT</a>
+  <a href="/" class="logo">SKARLAT</a>
   <div class="nav-links">
-    <a href="#collections">Колекції</a>
-    <a href="#process">Процес</a>
+    <a href="/jewelry/" data-ua="Каталог" data-ru="Каталог">Каталог</a>
+    <a href="#collections" data-ua="Колекції" data-ru="Коллекции">Колекції</a>
+    <a href="#process" data-ua="Процес" data-ru="Процесс">Процес</a>
+    <a href="/about/" data-ua="Про нас" data-ru="О нас">Про нас</a>
     <a href="tel:+380673817442">+380 67 381 74 42</a>
-    <a href="https://t.me/SkarlatAlex" class="btn" target="_blank" rel="noopener">Написати →</a>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="ua">UA</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="ru">RU</button>
+    </div>
+    <a href="https://t.me/SkarlatAlex" class="btn" target="_blank" rel="noopener" data-ua="Написати →" data-ru="Написать →">Написати →</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -542,10 +602,12 @@
 
 <!-- MOBILE MENU -->
 <div id="mobile-menu" role="dialog" aria-label="Навігація">
-  <a href="#collections" class="mm-link">Колекції</a>
-  <a href="#process" class="mm-link">Процес</a>
+  <a href="/jewelry/" class="mm-link" data-ua="Каталог" data-ru="Каталог">Каталог</a>
+  <a href="#collections" class="mm-link" data-ua="Колекції" data-ru="Коллекции">Колекції</a>
+  <a href="#process" class="mm-link" data-ua="Процес" data-ru="Процесс">Процес</a>
+  <a href="/about/" class="mm-link" data-ua="Про нас" data-ru="О нас">Про нас</a>
   <a href="tel:+380673817442" class="mm-link">+380 67 381 74 42</a>
-  <a href="https://t.me/SkarlatAlex" class="mm-link mm-cta" target="_blank" rel="noopener">Написати →</a>
+  <a href="https://t.me/SkarlatAlex" class="mm-link mm-cta" target="_blank" rel="noopener" data-ua="Написати →" data-ru="Написать →">Написати →</a>
 </div>
 
 <!-- HERO -->
@@ -563,6 +625,43 @@
     </h1>
     <p class="hero-sub">Кожна прикраса — союз бездоганного ремесла та індивідуального характеру. Від ескізу до вічності.</p>
     <a href="#collections" class="btn btn-lg">Переглянути колекцію →</a>
+  </div>
+</section>
+
+<!-- HERO SLIDER -->
+<section class="slider-section">
+  <div class="slider" id="mainSlider">
+    <div class="slide active">
+      <div class="slide-bg slide-bg-1"></div>
+      <div class="slide-content">
+        <p class="eyebrow" data-ua="Колекція сезону" data-ru="Коллекция сезона">Колекція сезону</p>
+        <h2 class="slide-title">Cartier Love</h2>
+        <a href="/jewelry/cartier/" class="btn" data-ua="Переглянути →" data-ru="Посмотреть →">Переглянути →</a>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg slide-bg-2"></div>
+      <div class="slide-content">
+        <p class="eyebrow" data-ua="Новинки" data-ru="Новинки">Новинки</p>
+        <h2 class="slide-title">Bvlgari Serpenti</h2>
+        <a href="/jewelry/" class="btn" data-ua="Переглянути →" data-ru="Посмотреть →">Переглянути →</a>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg slide-bg-3"></div>
+      <div class="slide-content">
+        <p class="eyebrow" data-ua="Ексклюзив" data-ru="Эксклюзив">Ексклюзив</p>
+        <h2 class="slide-title">Graff Diamond</h2>
+        <a href="/jewelry/" class="btn" data-ua="Переглянути →" data-ru="Посмотреть →">Переглянути →</a>
+      </div>
+    </div>
+    <button class="slider-arrow slider-prev" aria-label="Назад">←</button>
+    <button class="slider-arrow slider-next" aria-label="Вперед">→</button>
+    <div class="slider-dots">
+      <button class="slider-dot active" data-slide="0"></button>
+      <button class="slider-dot" data-slide="1"></button>
+      <button class="slider-dot" data-slide="2"></button>
+    </div>
   </div>
 </section>
 
@@ -680,6 +779,24 @@
   </div>
 </section>
 
+<!-- BRANDS -->
+<section class="section brands-section fade-up">
+  <div style="max-width:1200px;margin:0 auto;">
+    <p class="section-label" data-ua="Офіційні партнери" data-ru="Официальные партнёры">Офіційні партнери</p>
+    <h2 class="section-title" data-ua="Культові бренди" data-ru="Культовые бренды">Культові бренди</h2>
+  </div>
+  <div class="brands-grid">
+    <a href="/jewelry/cartier/" class="brand-card"><span class="brand-name">Cartier</span></a>
+    <a href="/jewelry/" class="brand-card"><span class="brand-name">Bvlgari</span></a>
+    <a href="/jewelry/" class="brand-card"><span class="brand-name">Graff</span></a>
+    <a href="/jewelry/" class="brand-card"><span class="brand-name">Tiffany &amp; Co.</span></a>
+    <a href="/jewelry/" class="brand-card"><span class="brand-name">Boucheron</span></a>
+    <a href="/jewelry/" class="brand-card"><span class="brand-name">Messika</span></a>
+    <a href="/jewelry/" class="brand-card"><span class="brand-name">Carrera y Carrera</span></a>
+    <a href="/jewelry/" class="brand-card"><span class="brand-name">Van Cleef &amp; Arpels</span></a>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="section">
   <div class="pricing-wrap fade-up">
@@ -741,6 +858,55 @@
   </div>
 </section>
 
+<!-- IN STOCK -->
+<section class="section">
+  <div class="in-stock-header fade-up">
+    <div>
+      <p class="section-label" data-ua="В наявності" data-ru="В наличии">В наявності</p>
+      <h2 class="section-title" data-ua="Готові до відправки" data-ru="Готовы к отправке">Готові до відправки</h2>
+    </div>
+    <a href="/jewelry/" class="btn" data-ua="Увесь каталог →" data-ru="Весь каталог →">Увесь каталог →</a>
+  </div>
+  <div class="in-stock-grid">
+    <a href="/jewelry/cartier/ring-1.html" class="prod-card fade-up">
+      <div class="prod-img"></div>
+      <div class="prod-info">
+        <div class="prod-brand">Cartier</div>
+        <div class="prod-name">Love Ring, 18K</div>
+        <div class="prod-status status-in" data-ua="● В наявності" data-ru="● В наличии">● В наявності</div>
+      </div>
+      <span class="prod-btn" data-ua="Ціна по запиту →" data-ru="Цена по запросу →">Ціна по запиту →</span>
+    </a>
+    <a href="/jewelry/" class="prod-card fade-up d1">
+      <div class="prod-img"></div>
+      <div class="prod-info">
+        <div class="prod-brand">Bvlgari</div>
+        <div class="prod-name">B.zero1 Ring</div>
+        <div class="prod-status status-in" data-ua="● В наявності" data-ru="● В наличии">● В наявності</div>
+      </div>
+      <span class="prod-btn" data-ua="Ціна по запиту →" data-ru="Цена по запросу →">Ціна по запиту →</span>
+    </a>
+    <a href="/jewelry/" class="prod-card fade-up d2">
+      <div class="prod-img"></div>
+      <div class="prod-info">
+        <div class="prod-brand">Tiffany &amp; Co.</div>
+        <div class="prod-name">T1 Ring, 18K Yellow Gold</div>
+        <div class="prod-status status-in" data-ua="● В наявності" data-ru="● В наличии">● В наявності</div>
+      </div>
+      <span class="prod-btn" data-ua="Ціна по запиту →" data-ru="Цена по запросу →">Ціна по запиту →</span>
+    </a>
+    <a href="/jewelry/" class="prod-card fade-up d3">
+      <div class="prod-img"></div>
+      <div class="prod-info">
+        <div class="prod-brand">Messika</div>
+        <div class="prod-name">Move Noa Ring</div>
+        <div class="prod-status status-order" data-ua="○ Під замовлення" data-ru="○ Под заказ">○ Під замовлення</div>
+      </div>
+      <span class="prod-btn" data-ua="Ціна по запиту →" data-ru="Цена по запросу →">Ціна по запиту →</span>
+    </a>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section class="section process-bg" id="process">
   <div class="process-header fade-up">
@@ -793,37 +959,38 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo">SKARLAT</div>
-      <p>Ювелірне мистецтво, що поєднує інженерну точність і вічну красу. Київ, Україна.</p>
+      <p data-ua="Ювелірне мистецтво, що поєднує інженерну точність і вічну красу. Київ, Україна." data-ru="Ювелирное искусство, объединяющее инженерную точность и вечную красоту. Киев, Украина.">Ювелірне мистецтво, що поєднує інженерну точність і вічну красу. Київ, Україна.</p>
+      <p style="margin-top:.75rem;font-size:.78rem;opacity:.4;" data-ua="вул. Хрещатик, Київ" data-ru="ул. Крещатик, Киев">вул. Хрещатик, Київ</p>
     </div>
     <div class="f-col">
-      <h4>Колекції</h4>
+      <h4 data-ua="Каталог" data-ru="Каталог">Каталог</h4>
       <ul>
-        <li><a href="#collections">Сніжинка</a></li>
-        <li><a href="#collections">Колекція Сонце</a></li>
-        <li><a href="#collections">Люкс Пусет</a></li>
-        <li><a href="#collections">Індивідуальне</a></li>
+        <li><a href="/jewelry/cartier/">Cartier</a></li>
+        <li><a href="/jewelry/">Bvlgari</a></li>
+        <li><a href="/jewelry/">Tiffany &amp; Co.</a></li>
+        <li><a href="/jewelry/" data-ua="Увесь каталог" data-ru="Весь каталог">Увесь каталог</a></li>
       </ul>
     </div>
     <div class="f-col">
-      <h4>Майстерня</h4>
+      <h4 data-ua="Компанія" data-ru="Компания">Компанія</h4>
       <ul>
-        <li><a href="#">Про нас</a></li>
-        <li><a href="#process">Процес</a></li>
-        <li><a href="#">Сертифікати</a></li>
+        <li><a href="/about/" data-ua="Про нас" data-ru="О нас">Про нас</a></li>
+        <li><a href="#process" data-ua="Процес" data-ru="Процесс">Процес</a></li>
+        <li><a href="/contacts/" data-ua="Контакти" data-ru="Контакты">Контакти</a></li>
       </ul>
     </div>
     <div class="f-col">
-      <h4>Контакти</h4>
+      <h4 data-ua="Контакти" data-ru="Контакты">Контакти</h4>
       <ul>
         <li><a href="tel:+380673817442">+380 67 381 74 42</a></li>
-        <li><a href="https://instagram.com/skarlatalex" target="_blank" rel="noopener">Instagram @skarlatalex</a></li>
+        <li><a href="https://instagram.com/skarlatalex" target="_blank" rel="noopener">@skarlatalex</a></li>
         <li><a href="https://t.me/SkarlatAlex" target="_blank" rel="noopener">Telegram @SkarlatAlex</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 SKARLAT Jewellery. Всі права захищені.</span>
-    <span>Розроблено з увагою до деталей</span>
+    <span data-ua="© 2025 SKARLAT Jewellery. Всі права захищені." data-ru="© 2025 SKARLAT Jewellery. Все права защищены.">© 2025 SKARLAT Jewellery. Всі права захищені.</span>
+    <span data-ua="Розроблено з увагою до деталей" data-ru="Разработано с вниманием к деталям">Розроблено з увагою до деталей</span>
   </div>
 </footer>
 
@@ -1294,6 +1461,34 @@ document.querySelectorAll('.c-card').forEach(card => {
     });
   });
 })();
+
+/* ═══════════════════════════════════════
+   19. SLIDER
+═══════════════════════════════════════ */
+(function initSlider() {
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.slider-dot');
+  if (!slides.length) return;
+  let cur = 0, timer;
+
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    resetTimer();
+  }
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(cur + 1), 5000);
+  }
+  document.querySelector('.slider-prev')?.addEventListener('click', () => goTo(cur - 1));
+  document.querySelector('.slider-next')?.addEventListener('click', () => goTo(cur + 1));
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.slide)));
+  resetTimer();
+})();
 </script>
+<script src="/lang.js"></script>
 </body>
 </html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакти — SKARLAT Jewellery</title>
+  <meta name="description" content="Контакти SKARLAT Jewellery. Київ, вул. Хрещатик. Телефон, Telegram, Instagram. Пн-Нд 10:00–20:00.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Crect x='9' y='9' width='14' height='14' fill='none' stroke='%23B8976A' stroke-width='1' transform='rotate(45 16 16)'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='13' fill='%23B8976A' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --card: #161616;
+      --border: rgba(184,151,106,0.18);
+      --gold: #B8976A;
+      --gold-light: #D4B896;
+      --gold-dim: rgba(184,151,106,0.08);
+      --white: #f0ece4;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', sans-serif;
+    }
+    body { background: var(--black); color: var(--white); font-family: var(--sans); font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+
+    /* SCROLL PROGRESS */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--gold); z-index: 10000; width: 0%; pointer-events: none; transition: width .05s linear; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 1.4rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(8,8,8,.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family: var(--serif); font-size: 1.45rem; font-weight: 300; letter-spacing: .35em; color: var(--gold); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: .78rem; letter-spacing: .1em; opacity: .6; transition: opacity .3s; }
+    .nav-links a:hover { opacity: 1; }
+    .btn { display: inline-flex; align-items: center; gap: .6rem; padding: .75rem 2rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; transition: background .3s, color .3s; background: transparent; cursor: pointer; }
+    .btn:hover { background: var(--gold); color: var(--black); }
+    .lang-switch { display: flex; align-items: center; gap: .35rem; }
+    .lang-btn { background: none; border: none; color: var(--white); font-size: .72rem; letter-spacing: .08em; cursor: pointer; opacity: .38; transition: opacity .25s, color .25s; font-family: var(--sans); padding: 0; }
+    .lang-btn.active { opacity: 1; color: var(--gold); }
+    .lang-sep { opacity: .18; font-size: .65rem; color: var(--white); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--white); transition: transform .3s, opacity .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    #mobile-menu { display: none; position: fixed; inset: 0; background: rgba(8,8,8,.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+    #mobile-menu.open { display: flex; }
+    .mm-link { color: var(--white); text-decoration: none; font-family: var(--serif); font-size: 2rem; font-weight: 300; letter-spacing: .15em; opacity: .7; transition: opacity .3s, color .3s; }
+    .mm-link:hover { opacity: 1; color: var(--gold); }
+    .mm-cta { color: var(--gold); border: 1px solid var(--gold); font-family: var(--sans); font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; padding: 1rem 2.5rem; margin-top: 1rem; }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* HERO */
+    .page-hero {
+      padding: 10rem 2.5rem 5rem;
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute;
+      right: 8%; top: 50%; transform: translateY(-50%) rotate(45deg);
+      width: min(35vw, 400px); height: min(35vw, 400px);
+      border: 1px solid rgba(184,151,106,.07);
+    }
+    .page-hero::after {
+      content: ''; position: absolute;
+      right: calc(8% + min(3.5vw, 40px)); top: 50%; transform: translateY(-50%) rotate(45deg);
+      width: min(27vw, 316px); height: min(27vw, 316px);
+      border: 1px solid rgba(184,151,106,.05);
+    }
+    .page-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .eyebrow { font-size: .65rem; letter-spacing: .45em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: block; }
+    .page-title { font-family: var(--serif); font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 300; line-height: 1.05; }
+    .page-title em { font-style: italic; color: var(--gold-light); }
+    @media (max-width: 600px) { .page-hero { padding: 7rem 1.25rem 3.5rem; } }
+
+    /* MAIN SECTION */
+    .contacts-section { padding: 6rem 2.5rem; }
+    .contacts-inner { max-width: 1100px; margin: 0 auto; }
+    .contacts-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+    @media (max-width: 850px) {
+      .contacts-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contacts-section { padding: 4rem 1.25rem; }
+    }
+
+    /* CONTACT ITEMS */
+    .contact-list { display: flex; flex-direction: column; gap: 0; }
+    .contact-item {
+      display: grid; grid-template-columns: 48px 1fr;
+      gap: 1rem; align-items: center;
+      padding: 1.4rem 0; border-bottom: 1px solid var(--border);
+    }
+    .contact-item:first-child { padding-top: 0; }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1.1rem;
+      transition: border-color .3s, background .3s;
+      flex-shrink: 0;
+    }
+    .contact-item:hover .contact-icon { border-color: rgba(184,151,106,.5); background: var(--gold-dim); }
+    .contact-label { font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: .25rem; }
+    .contact-value { font-size: .9rem; opacity: .75; line-height: 1.4; }
+    .contact-value a { color: var(--white); text-decoration: none; transition: color .2s, opacity .2s; }
+    .contact-value a:hover { color: var(--gold); opacity: 1; }
+
+    /* MAP */
+    .map-embed { width: 100%; height: 460px; border: 1px solid var(--border); filter: grayscale(1) brightness(.75) contrast(1.1); display: block; }
+    @media (max-width: 850px) { .map-embed { height: 300px; } }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 0 2.5rem; }
+    @media (max-width: 600px) { .divider { margin: 0 1.25rem; } }
+
+    /* CTA FORM */
+    .cta-form-section {
+      padding: 6rem 2.5rem;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+    }
+    .cta-form-inner { max-width: 1100px; margin: 0 auto; }
+    .cta-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    @media (max-width: 850px) {
+      .cta-form-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .cta-form-section { padding: 4rem 1.25rem; }
+    }
+
+    .section-label { font-size: .65rem; letter-spacing: .45em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: block; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.25rem; }
+    .section-sub { font-size: .88rem; opacity: .55; line-height: 1.85; max-width: 400px; }
+
+    /* FORM */
+    .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-label { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; opacity: .5; }
+    .form-input, .form-textarea {
+      width: 100%; padding: .9rem 1rem;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--white); font-family: var(--sans); font-size: .88rem; font-weight: 300;
+      outline: none; transition: border-color .25s; resize: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: rgba(184,151,106,.5); }
+    .form-textarea { min-height: 110px; }
+    .btn-submit {
+      width: 100%; padding: 1rem 2rem;
+      border: 1px solid var(--gold); background: var(--gold);
+      color: var(--black); font-family: var(--sans);
+      font-size: .78rem; letter-spacing: .2em; text-transform: uppercase;
+      cursor: pointer; transition: background .3s, color .3s, border-color .3s;
+      margin-top: .25rem;
+    }
+    .btn-submit:hover { background: transparent; color: var(--gold); }
+
+    /* SUCCESS */
+    .form-success {
+      display: none; text-align: center; padding: 3rem 2rem;
+      border: 1px solid var(--border); background: var(--card);
+    }
+    .form-success.show { display: block; }
+    .form-success svg { width: 52px; height: 52px; margin-bottom: 1.25rem; }
+    .form-success h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; margin-bottom: .75rem; }
+    .form-success p { font-size: .85rem; opacity: .6; margin-bottom: 1.5rem; line-height: 1.7; }
+    .btn-tg {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .9rem 2rem; border: 1px solid var(--gold);
+      color: var(--gold); text-decoration: none;
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      transition: background .3s, color .3s;
+    }
+    .btn-tg:hover { background: var(--gold); color: var(--black); }
+
+    /* SOCIAL STRIP */
+    .social-strip {
+      padding: 3rem 2.5rem; border-top: 1px solid var(--border);
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+    }
+    .social-link {
+      display: flex; align-items: center; gap: .6rem;
+      color: var(--white); text-decoration: none;
+      font-size: .78rem; letter-spacing: .1em; opacity: .4;
+      transition: opacity .3s, color .3s;
+    }
+    .social-link:hover { opacity: 1; color: var(--gold); }
+    .social-icon { width: 32px; height: 32px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .9rem; transition: border-color .3s; }
+    .social-link:hover .social-icon { border-color: rgba(184,151,106,.5); }
+    @media (max-width: 600px) { .social-strip { padding: 2.5rem 1.25rem; } }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 3rem 2.5rem 2rem; }
+    .footer-compact { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; letter-spacing: .35em; color: var(--gold); text-decoration: none; }
+    .footer-contacts { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-contacts a { color: var(--white); text-decoration: none; font-size: .78rem; opacity: .45; transition: opacity .3s; letter-spacing: .05em; }
+    .footer-contacts a:hover { opacity: 1; }
+    .footer-copy { font-size: .68rem; opacity: .25; letter-spacing: .05em; width: 100%; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    @media (max-width: 600px) {
+      footer { padding: 2.5rem 1.25rem 1.5rem; }
+      .footer-compact { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* FADE-UP */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.in { opacity: 1; transform: none; }
+    .fade-up.d1 { transition-delay: .1s; } .fade-up.d2 { transition-delay: .2s; } .fade-up.d3 { transition-delay: .3s; }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav>
+  <a href="/" class="logo">SKARLAT</a>
+  <div class="nav-links">
+    <a href="/jewelry/" data-ua="Каталог" data-ru="Каталог">Каталог</a>
+    <a href="/#collections" data-ua="Колекції" data-ru="Коллекции">Колекції</a>
+    <a href="/about/" data-ua="Про нас" data-ru="О нас">Про нас</a>
+    <a href="tel:+380673817442">+380 67 381 74 42</a>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="ua">UA</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="ru">RU</button>
+    </div>
+    <a href="https://t.me/SkarlatAlex" class="btn" target="_blank" rel="noopener" data-ua="Написати →" data-ru="Написать →">Написати →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="mobile-menu" role="dialog">
+  <a href="/jewelry/" class="mm-link" data-ua="Каталог" data-ru="Каталог">Каталог</a>
+  <a href="/#collections" class="mm-link" data-ua="Колекції" data-ru="Коллекции">Колекції</a>
+  <a href="/about/" class="mm-link" data-ua="Про нас" data-ru="О нас">Про нас</a>
+  <a href="tel:+380673817442" class="mm-link">+380 67 381 74 42</a>
+  <a href="https://t.me/SkarlatAlex" class="mm-link mm-cta" target="_blank" rel="noopener" data-ua="Написати →" data-ru="Написать →">Написати →</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow" data-ua="Зв'язок з нами" data-ru="Связь с нами">Зв'язок з нами</span>
+    <h1 class="page-title">
+      <span data-ua="Контакти" data-ru="Контакты">Контакти</span>
+    </h1>
+  </div>
+</section>
+
+<!-- CONTACTS + MAP -->
+<section class="contacts-section">
+  <div class="contacts-inner">
+    <div class="contacts-grid">
+
+      <!-- CONTACT LIST -->
+      <div class="contact-list fade-up">
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label" data-ua="Адреса" data-ru="Адрес">Адреса</div>
+            <div class="contact-value" data-ua="вул. Хрещатик, Київ 01001" data-ru="ул. Крещатик, Киев 01001">вул. Хрещатик, Київ 01001</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label" data-ua="Телефон" data-ru="Телефон">Телефон</div>
+            <div class="contact-value"><a href="tel:+380673817442">+380 67 381 74 42</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:info@skarlat.ua">info@skarlat.ua</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div class="contact-label">Telegram</div>
+            <div class="contact-value"><a href="https://t.me/SkarlatAlex" target="_blank" rel="noopener">@SkarlatAlex</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📸</div>
+          <div>
+            <div class="contact-label">Instagram</div>
+            <div class="contact-value"><a href="https://instagram.com/skarlatalex" target="_blank" rel="noopener">@skarlatalex</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">⏰</div>
+          <div>
+            <div class="contact-label" data-ua="Графік роботи" data-ru="График работы">Графік роботи</div>
+            <div class="contact-value" data-ua="Пн — Нд: 10:00 — 20:00" data-ru="Пн — Вс: 10:00 — 20:00">Пн — Нд: 10:00 — 20:00</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MAP -->
+      <div class="fade-up d2">
+        <iframe
+          class="map-embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.437694694258!2d30.523333!3d50.450001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI3JzAwLjAiTiAzMMKwMzEnMjQuMCJF!5e0!3m2!1suk!2sua!4v1234567890"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="SKARLAT на карті">
+        </iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL STRIP -->
+<div class="social-strip">
+  <a href="https://t.me/SkarlatAlex" class="social-link" target="_blank" rel="noopener">
+    <span class="social-icon">✈</span>
+    <span>Telegram</span>
+  </a>
+  <a href="https://instagram.com/skarlatalex" class="social-link" target="_blank" rel="noopener">
+    <span class="social-icon">◻</span>
+    <span>Instagram</span>
+  </a>
+  <a href="tel:+380673817442" class="social-link">
+    <span class="social-icon">◈</span>
+    <span>+380 67 381 74 42</span>
+  </a>
+</div>
+
+<!-- CTA FORM -->
+<section class="cta-form-section">
+  <div class="cta-form-inner">
+    <div class="cta-form-grid">
+
+      <div class="fade-up">
+        <span class="section-label" data-ua="Напишіть нам" data-ru="Напишите нам">Напишіть нам</span>
+        <h2 class="section-title" data-ua="Залишіть заявку" data-ru="Оставьте заявку">Залишіть заявку</h2>
+        <p class="section-sub" data-ua="Заповніть форму — наш менеджер зв'яжеться з вами впродовж 15 хвилин у робочий час. Або напишіть нам напряму в Telegram." data-ru="Заполните форму — наш менеджер свяжется с вами в течение 15 минут в рабочее время. Или напишите нам напрямую в Telegram.">Заповніть форму — наш менеджер зв'яжеться з вами впродовж 15 хвилин у робочий час. Або напишіть нам напряму в Telegram.</p>
+      </div>
+
+      <div class="fade-up d2">
+        <div id="form-wrap">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="c-name" data-ua="Ваше ім'я" data-ru="Ваше имя">Ваше ім'я</label>
+              <input class="form-input" type="text" id="c-name" name="name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-phone" data-ua="Номер телефону" data-ru="Номер телефона">Номер телефону</label>
+              <input class="form-input" type="tel" id="c-phone" name="phone" required autocomplete="tel" placeholder="+380 __ ___ __ __">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-msg" data-ua="Повідомлення" data-ru="Сообщение">Повідомлення</label>
+              <textarea class="form-textarea" id="c-msg" name="message" data-ua="Добрий день! Хотів би дізнатися більше про ваш асортимент." data-ru="Добрый день! Хотел бы узнать больше о вашем ассортименте.">Добрий день! Хотів би дізнатися більше про ваш асортимент.</textarea>
+            </div>
+            <button type="submit" class="btn-submit" data-ua="Надіслати заявку" data-ru="Отправить заявку">Надіслати заявку</button>
+          </form>
+        </div>
+
+        <div class="form-success" id="form-success">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="26" r="24" stroke="#B8976A" stroke-width="1"/>
+            <path d="M16 26 L22 32 L36 18" stroke="#B8976A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 data-ua="Заявку надіслано" data-ru="Заявка отправлена">Заявку надіслано</h3>
+          <p data-ua="Дякуємо! Ми зв'яжемося з вами найближчим часом. Для швидшої відповіді — напишіть нам у Telegram:" data-ru="Спасибо! Мы свяжемся с вами в ближайшее время. Для более быстрого ответа — напишите нам в Telegram:">Дякуємо! Ми зв'яжемося з вами найближчим часом. Для швидшої відповіді — напишіть нам у Telegram:</p>
+          <a href="https://t.me/SkarlatAlex" class="btn-tg" target="_blank" rel="noopener" data-ua="Написати в Telegram →" data-ru="Написать в Telegram →">Написати в Telegram →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-compact">
+    <a href="/" class="footer-logo">SKARLAT</a>
+    <div class="footer-contacts">
+      <a href="tel:+380673817442">+380 67 381 74 42</a>
+      <a href="https://t.me/SkarlatAlex" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://instagram.com/skarlatalex" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-copy">
+      <span data-ua="© 2024 SKARLAT Jewellery · Київ · Усі права захищені" data-ru="© 2024 SKARLAT Jewellery · Киев · Все права защищены">© 2024 SKARLAT Jewellery · Київ · Усі права захищені</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── LANG ──
+(function(){var K='skarlat_lang';function a(l){document.documentElement.setAttribute('data-lang',l);document.querySelectorAll('[data-ua]').forEach(function(e){e.textContent=l==='ru'?(e.dataset.ru||e.dataset.ua):e.dataset.ua;});document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l);});localStorage.setItem(K,l);}document.addEventListener('DOMContentLoaded',function(){var s=localStorage.getItem(K)||'ua';a(s);document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){a(b.dataset.lang);});});});})();
+
+// ── HAMBURGER ──
+(function(){var h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),n=document.querySelector('nav');if(!h||!m)return;function o(){h.classList.add('open');m.classList.add('open');n.classList.add('menu-open');document.body.style.overflow='hidden';}function c(){h.classList.remove('open');m.classList.remove('open');n.classList.remove('menu-open');document.body.style.overflow='';}h.addEventListener('click',function(){m.classList.contains('open')?c():o();});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c);});document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});})();
+
+// ── SCROLL PROGRESS ──
+(function(){var bar=document.getElementById('scroll-progress');if(!bar)return;function upd(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(h>0?window.scrollY/h*100:0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+
+// ── FADE-UP ──
+(function(){var els=document.querySelectorAll('.fade-up');if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('in');obs.unobserve(entry.target);}});},{threshold:0.1});els.forEach(function(e){obs.observe(e);});})();
+
+// ── CONTACT FORM ──
+(function(){
+  var form=document.getElementById('contact-form');
+  var wrap=document.getElementById('form-wrap');
+  var success=document.getElementById('form-success');
+  if(!form) return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    wrap.style.display='none';
+    success.classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>
