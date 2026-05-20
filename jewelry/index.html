@@ -79,7 +79,7 @@
     .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-    @media (max-width: 600px) { .hamburger { display: flex; } .nav-links { display: none; } }
+    @media (max-width: 900px) { .hamburger { display: flex; } .nav-links { display: none; } }
 
     /* ── MOBILE MENU ── */
     #mobile-menu {
@@ -148,7 +148,7 @@
       background: var(--dark);
       border-bottom: 1px solid var(--border);
       padding: 1.5rem 2.5rem;
-      position: sticky; top: 65px; z-index: 50;
+      position: sticky; top: 73px; z-index: 50;
     }
     .filter-inner { max-width: 1200px; margin: 0 auto; }
     .filter-row {
@@ -752,7 +752,6 @@
   </div>
 </footer>
 
-<script src="/lang.js"></script>
 <script>
 // ── Lang switcher ──
 (function(){var K='skarlat_lang';function a(l){document.documentElement.setAttribute('data-lang',l);document.querySelectorAll('[data-ua]').forEach(function(e){e.textContent=l==='ru'?(e.dataset.ru||e.dataset.ua):e.dataset.ua;});document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l);});localStorage.setItem(K,l);}document.addEventListener('DOMContentLoaded',function(){var s=localStorage.getItem(K)||'ua';a(s);document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){a(b.dataset.lang);});});});})();
